@@ -1,0 +1,629 @@
+fileFormatVersion: 2
+guid: c27d1798b53cdf946ab0b4038f305d35
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2069900779168214433
+    second: Elro_Idle_0
+  - first:
+      213: 5132203178382882178
+    second: Elro_Idle_1
+  - first:
+      213: -6005602641618419654
+    second: Elro_Walking_0
+  - first:
+      213: -7597806831390574593
+    second: Elro_Walking_1
+  - first:
+      213: -6171629492594258350
+    second: Elro_Attack_LR_0
+  - first:
+      213: 9158615638212787898
+    second: Elro_Attack_LR_4
+  - first:
+      213: 983293824969730300
+    second: Elro_Attack_LR_1
+  - first:
+      213: 4835142579412222869
+    second: Elro_Attack_LR_2
+  - first:
+      213: -5961361034784890064
+    second: Elro_Attack_LR_3
+  - first:
+      213: -3349772457239842527
+    second: Elro_Attack_RL_0
+  - first:
+      213: 5733697648265774112
+    second: Elro_Attack_RL_4
+  - first:
+      213: 6065528269175903809
+    second: Elro_Attack_RL_1
+  - first:
+      213: -253671780443442031
+    second: Elro_Attack_RL_2
+  - first:
+      213: 4248546153574987148
+    second: Elro_Attack_RL_3
+  - first:
+      213: -6581885241082633873
+    second: Elro Sprite Sheet_14
+  - first:
+      213: -4645445859996939102
+    second: Elro Sprite Sheet_15
+  - first:
+      213: -782653806135095125
+    second: Elro Sprite Sheet_16
+  - first:
+      213: -4615055548891546877
+    second: Elro Sprite Sheet_17
+  - first:
+      213: 4641257468987411667
+    second: Elro Sprite Sheet_18
+  - first:
+      213: -7450620730292071021
+    second: Elro Sprite Sheet_19
+  - first:
+      213: -7126153421692455950
+    second: Elro Sprite Sheet_20
+  - first:
+      213: 7880920569730005920
+    second: Elro Sprite Sheet_21
+  - first:
+      213: 7001073867452140530
+    second: Elro Sprite Sheet_22
+  - first:
+      213: 42049311159451401
+    second: Elro Sprite Sheet_23
+  - first:
+      213: -5499524259047482759
+    second: Elro Sprite Sheet_24
+  - first:
+      213: 6650189594271333212
+    second: Elro Sprite Sheet_25
+  - first:
+      213: 8017702315096836159
+    second: Elro Sprite Sheet_26
+  - first:
+      213: -2826773373373897749
+    second: Elro Sprite Sheet_27
+  - first:
+      213: -7142339362374689725
+    second: Elro Sprite Sheet_28
+  - first:
+      213: -5441284229227048012
+    second: Elro Sprite Sheet_29
+  - first:
+      213: 4687783500126497875
+    second: Elro Sprite Sheet_30
+  - first:
+      213: 1881065296269995856
+    second: Elro Sprite Sheet_31
+  - first:
+      213: 6351803178996875989
+    second: Elro Sprite Sheet_32
+  - first:
+      213: 358659698186023087
+    second: Elro Sprite Sheet_33
+  - first:
+      213: -5576220060210011284
+    second: Elro Sprite Sheet_34
+  - first:
+      213: -229810308171305889
+    second: Elro Sprite Sheet_35
+  - first:
+      213: 1990483734951118536
+    second: Elro Sprite Sheet_36
+  - first:
+      213: 7568546095189654402
+    second: Elro Sprite Sheet_37
+  - first:
+      213: -3081211688101540199
+    second: Elro Sprite Sheet_38
+  - first:
+      213: 2591761642783098190
+    second: Elro Sprite Sheet_39
+  - first:
+      213: -1855593982969006064
+    second: Elro Sprite Sheet_40
+  - first:
+      213: -873624667825518732
+    second: Elro Sprite Sheet_41
+  - first:
+      213: 9157556039261193766
+    second: Elro Sprite Sheet_42
+  - first:
+      213: 8617292304716190452
+    second: Elro Sprite Sheet_43
+  - first:
+      213: -2038831745674047612
+    second: Elro Sprite Sheet_44
+  - first:
+      213: 4622600227940552056
+    second: Elro Sprite Sheet_45
+  - first:
+      213: 467766249121566634
+    second: Elro Sprite Sheet_46
+  - first:
+      213: 7317142585699297983
+    second: Elro Sprite Sheet_47
+  - first:
+      213: -2111356717407848748
+    second: Elro Sprite Sheet_48
+  - first:
+      213: -8944442146901355413
+    second: Elro Sprite Sheet_49
+  - first:
+      213: 4526237804131400525
+    second: Elro Sprite Sheet_50
+  - first:
+      213: 7984868356077614751
+    second: Elro Sprite Sheet_51
+  - first:
+      213: 930279139511613372
+    second: Elro Sprite Sheet_52
+  - first:
+      213: 3593734852970015882
+    second: Elro Sprite Sheet_53
+  - first:
+      213: -2088183894295137575
+    second: Elro Sprite Sheet_54
+  - first:
+      213: -6452736988230836243
+    second: Elro Sprite Sheet_55
+  - first:
+      213: -2822299684798135789
+    second: Elro Sprite Sheet_56
+  - first:
+      213: 5003223638695511777
+    second: Elro Sprite Sheet_57
+  - first:
+      213: 4981192299391801044
+    second: Elro Sprite Sheet_58
+  - first:
+      213: 9104161953612313850
+    second: Elro Sprite Sheet_59
+  - first:
+      213: 8660770903878985724
+    second: Elro Sprite Sheet_60
+  - first:
+      213: -4994096944039067755
+    second: Elro Sprite Sheet_61
+  - first:
+      213: -7839272613094579800
+    second: Elro Sprite Sheet_62
+  - first:
+      213: -2978505056699056115
+    second: Elro Sprite Sheet_63
+  - first:
+      213: -8535331165847918944
+    second: Elro Sprite Sheet_64
+  - first:
+      213: -4326408031576622710
+    second: Elro Sprite Sheet_65
+  - first:
+      213: -6818241595108502843
+    second: Elro Sprite Sheet_66
+  - first:
+      213: -3551382771734869070
+    second: Elro Sprite Sheet_67
+  - first:
+      213: -6564002931848171693
+    second: Elro Sprite Sheet_68
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Elro_Idle_0
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 1586
+        width: 200
+        height: 281
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ad20a6bac3c9bc10800000000000000
+      internalID: 2069900779168214433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elro_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 1585
+        width: 200
+        height: 281
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28574a2699f393740800000000000000
+      internalID: 5132203178382882178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elro_Walking_0
+      rect:
+        serializedVersion: 2
+        x: 1383
+        y: 1585
+        width: 200
+        height: 281
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a30cf2c6730d7aca0800000000000000
+      internalID: -6005602641618419654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elro_Walking_1
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 1583
+        width: 200
+        height: 281
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff7bde611fa2f8690800000000000000
+      internalID: -7597806831390574593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elro_Attack_LR_0
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 1115
+        width: 200
+        height: 281
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25e4898dca7f95aa0800000000000000
+      internalID: -6171629492594258350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elro_Attack_LR_4
+      rect:
+        serializedVersion: 2
+        x: 1149
+        y: 794
+        width: 200
+        height: 281
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abeb2060660f91f70800000000000000
+      internalID: 9158615638212787898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elro_Attack_LR_1
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 1115
+        width: 550
+        height: 320
+      alignment: 9
+      pivot: {x: 0.26161098, y: 0.43828735}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf8e72b268c55ad00800000000000000
+      internalID: 983293824969730300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elro_Attack_LR_2
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 1115
+        width: 550
+        height: 320
+      alignment: 9
+      pivot: {x: 0.35078657, y: 0.44145623}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5934b3cee80e91340800000000000000
+      internalID: 4835142579412222869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elro_Attack_LR_3
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 779
+        width: 550
+        height: 320
+      alignment: 9
+      pivot: {x: 0.3575366, y: 0.48367596}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 033aac739bdf44da0800000000000000
+      internalID: -5961361034784890064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elro_Attack_RL_0
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 383
+        width: 200
+        height: 281
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 121f4dfa2b73381d0800000000000000
+      internalID: -3349772457239842527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elro_Attack_RL_4
+      rect:
+        serializedVersion: 2
+        x: 1137
+        y: 47
+        width: 200
+        height: 281
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 024cf56f1af229f40800000000000000
+      internalID: 5733697648265774112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elro_Attack_RL_1
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 366
+        width: 550
+        height: 320
+      alignment: 9
+      pivot: {x: 0.27152112, y: 0.51269037}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 146d15303d51d2450800000000000000
+      internalID: 6065528269175903809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elro_Attack_RL_2
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 371
+        width: 550
+        height: 320
+      alignment: 9
+      pivot: {x: 0.3773089, y: 0.48242703}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 194b0251cd6ca7cf0800000000000000
+      internalID: -253671780443442031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elro_Attack_RL_3
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 28
+        width: 550
+        height: 320
+      alignment: 9
+      pivot: {x: 0.37872735, y: 0.505485}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8570b7873ed5fa30800000000000000
+      internalID: 4248546153574987148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
