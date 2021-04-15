@@ -10,22 +10,17 @@ public class PlayerHabilities : MonoBehaviour
     }
     private void Update()
     {
-        if(PlayerManager.instance.Skill_Impact)
+        if(PlayerManager.instance.getSkill_Impact())
             groundImpact();
-        if(PlayerManager.instance.Skill_Walljump)
+        if(PlayerManager.instance.getSkill_WallJump())
             WallJump();
-        if(PlayerManager.instance.Skill_WaterBubble)
+        if(PlayerManager.instance.getSkill_WaterBubble())
             WaterBubble();
     }
     private void FixedUpdate()
     {
-        if(PlayerManager.instance.curEnergy > PlayerManager.instance.maxEnergy)
-        {
-            PlayerManager.instance.curEnergy = PlayerManager.instance.maxEnergy;
-        }
-
         Heal();
-        if(PlayerManager.instance.Skill_Walljump && !PlayerManager.instance.playerMovement.isJumping)
+        if(PlayerManager.instance.getSkill_WallJump() && !PlayerManager.instance.playerMovement.isJumping)
             WallSlide();
         WaterPhysics();
     }
@@ -38,22 +33,22 @@ public class PlayerHabilities : MonoBehaviour
 
     private void Heal()
     {
-        if(Input.GetKey(KeyCode.Z) && PlayerManager.instance.curLife < PlayerManager.instance.maxLife && PlayerManager.instance.playerMovement.isGrounded && !PlayerManager.instance.cantAction)
+        if(Input.GetKey(KeyCode.Z) && PlayerManager.instance.playerBase.getCurrentLife() < PlayerManager.instance.playerBase.getMaxLife() && PlayerManager.instance.playerMovement.isGrounded && !PlayerManager.instance.playerBase.getCantAction())
         {
             healing = true;
             curHealTime += Time.fixedDeltaTime;
             if(curHealTime > (healTime/2 + 0.015f) && curHealTime < healTime)
             {
-                PlayerManager.instance.curEnergy -= 2;
+                PlayerManager.instance.playerBase.addEnergy(-2);
             }
-            else if(curHealTime >= healTime && PlayerManager.instance.curEnergy >= 0)
+            else if(curHealTime >= healTime && PlayerManager.instance.playerBase.getCurrentEnergy() >= 0)
             {
                 healed = true;
                 curHealTime = 0;
             }
-            else if(curHealTime >= healTime && PlayerManager.instance.curEnergy < 0)
+            else if(curHealTime >= healTime && PlayerManager.instance.playerBase.getCurrentEnergy() < 0)
             {
-                PlayerManager.instance.curEnergy = 0;
+                PlayerManager.instance.playerBase.setCurEnergy(0);
                 curHealTime = 0;
             }
         }
@@ -64,7 +59,7 @@ public class PlayerHabilities : MonoBehaviour
 
         if(healed)
         {
-            PlayerManager.instance.curLife += 1;
+            PlayerManager.instance.playerBase.addLife(1);
             healed = false;
         }
     }
@@ -81,13 +76,13 @@ public class PlayerHabilities : MonoBehaviour
     private void groundImpact()
     {
         if( Input.GetKey(KeyCode.DownArrow) && Input.GetKeyDown(KeyCode.C) && 
-            PlayerManager.instance.curEnergy >= 100 && 
-            !PlayerManager.instance.cantAction && 
-            !PlayerManager.instance.refreshSkill && 
+            PlayerManager.instance.playerBase.getCurrentEnergy() >= 100 && 
+            !PlayerManager.instance.playerBase.getCantAction() && 
+            !PlayerManager.instance.playerBase.getRefreshSkill() && 
             !onWater)
         {
             GImpact = true;
-            PlayerManager.instance.curEnergy -= 100;
+            PlayerManager.instance.playerBase.addEnergy(-100);
             PlayerManager.instance.GravityChange(0);
             PlayerManager.instance.rb.velocity = Vector2.zero;
             if(PlayerManager.instance.playerMovement.isGrounded)
@@ -95,12 +90,12 @@ public class PlayerHabilities : MonoBehaviour
                 PlayerManager.instance.rb.AddForce(Vector2.up * 1000,ForceMode2D.Impulse);
             }
             StartCoroutine(impact());
-            PlayerManager.instance.refreshSkill = true;
+            PlayerManager.instance.playerBase.setRefreshSkill(true);
         }
         if(impactTrigger)
         {
             impactTrigger = false;
-            StartCoroutine(PlayerManager.instance.refreshTime(0.75f));
+            StartCoroutine(PlayerManager.instance.playerBase.refreshTime(0.75f));
             
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(impactPosition.position, impactRange, PlayerManager.instance.playerAttack.enemyLayers);
             foreach(Collider2D hit in hitEnemies)
@@ -143,7 +138,7 @@ public class PlayerHabilities : MonoBehaviour
         if( hitD.collider != null)
         {
             Rside = true;
-            if(Input.GetKey(KeyCode.RightArrow) && !PlayerManager.instance.cantAction)
+            if(Input.GetKey(KeyCode.RightArrow) && !PlayerManager.instance.playerBase.getCantAction())
             {
                 if( !PlayerManager.instance.playerMovement.isGrounded && hitD.collider.tag == "Wall" ||
                     !PlayerManager.instance.playerMovement.isGrounded && hitD.collider.tag == "InteractableWall" ||
@@ -192,7 +187,7 @@ public class PlayerHabilities : MonoBehaviour
     {
         if(sliding)
         {
-            if(Input.GetKeyDown(KeyCode.Space) && !PlayerManager.instance.cantAction)
+            if(Input.GetKeyDown(KeyCode.Space) && !PlayerManager.instance.playerBase.getCantAction())
             {
                 if(Rside)
                 {
@@ -301,7 +296,7 @@ public class PlayerHabilities : MonoBehaviour
     }
     private void WaterPhysics()
     {
-        if(onWater && PlayerManager.instance.Skill_WaterBubble)
+        if(onWater && PlayerManager.instance.getSkill_WaterBubble())
         {
             if(inWaterBubble)
             {

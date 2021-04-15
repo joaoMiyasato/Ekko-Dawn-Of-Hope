@@ -18,8 +18,8 @@ public class UI : MonoBehaviour
         GameManager.instance.transition = false;
         GameManager.instance.Xtransition = false;
         GameManager.instance.Ytransition = false;
-        PlayerManager.instance.cantMove = false;
-        PlayerManager.instance.cantAction = false;
+        PlayerManager.instance.playerBase.setCantMove(false);
+        PlayerManager.instance.playerBase.setCantAction(false);
     }
     public void Xteleport()
     {

@@ -16,11 +16,11 @@ public class SyntesisButton : MonoBehaviour,ISelectHandler
 
     private ItemObject GetThisItem()
     {
-        for(int i = 0; i < PlayerManager.instance.inventoryManager.syntesis.Container.Count; i++)
+        for(int i = 0; i < PlayerManager.instance.inventorySyntesis.Container.Count; i++)
         {
             if(buttonID == i)
             {
-                thisItem = PlayerManager.instance.inventoryManager.syntesis.Container[i].item;
+                thisItem = PlayerManager.instance.inventorySyntesis.Container[i].item;
             }
         }
 

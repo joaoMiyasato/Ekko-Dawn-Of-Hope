@@ -6,34 +6,30 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
 
-    public float gravity;
+    public float gravity = 10;
 
     public PlayerBase playerBase;
     public PlayerMovement playerMovement;
     public PlayerAttack playerAttack;
     public PlayerHabilities playerHabilities;
-    public InventoryManager inventoryManager;
     public Animator animator;
 
     public Rigidbody2D rb;
+    
+    public InventoryObject inventoryJewel;
+    public InventoryObject inventoryMemory;
+    public InventoryObject inventorySyntesis;
+    public InventoryObject inventoryEnemy;
 
     public InteractableObject chests;
     public bool[] chestOpen;
     public InteractableObject destructableWall;
     public bool[] destructableWallOpen;
     
-    public int maxLife = 500, curLife;
-    public int maxEnergy = 300, curEnergy;
-    public float iFrames; private bool mapDamage;
-    public bool cantMove, cantAction, cantJump, refreshSkill;
 
-    public int PowerPoints = 10000;
-    public int EnergyStones = 0;
+    private bool hasLantern = false, lanternIsCharged = false;
 
-    public bool Lantern = false;
-    public bool LanternIsCharged = false;
-
-    public bool Skill_Impact, Skill_Walljump, Skill_WaterBubble, Skill_DoubleJump;
+    private bool skill_Impact, skill_Walljump, skill_WaterBubble, skill_DoubleJump;
 
     private int gravityChange = 1;
 
@@ -107,36 +103,15 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(iFrames > 0)
-        {
-            iFrames -= Time.fixedDeltaTime;
-        }
     }
 
-    public void setIframes(float howMuch, bool _mapDamage)
-    {
-        iFrames = howMuch;
-        mapDamage = _mapDamage;
-        if(mapDamage)
-        {
-            StartCoroutine(cantActionFor(iFrames*2/3));
-            StartCoroutine(cantJumpFor(iFrames*2/3));
-            StartCoroutine(cantMoveFor(iFrames*2/3));
-        }
-        else
-        {
-            StartCoroutine(cantActionFor(iFrames/2));
-            StartCoroutine(cantJumpFor(iFrames/2));
-            StartCoroutine(cantMoveFor(iFrames/2));
-        }
-    }
 
     public void ClearAll()
     {
-        inventoryManager.syntesis.Container.Clear();
-        inventoryManager.enemy.Container.Clear();
-        inventoryManager.jewel.Container.Clear();
-        inventoryManager.memory.Container.Clear();
+        inventorySyntesis.Container.Clear();
+        inventoryEnemy.Container.Clear();
+        inventoryJewel.Container.Clear();
+        inventoryMemory.Container.Clear();
 
         for (int i = 0; i < chests.Container.Count; i++)
         {
@@ -147,44 +122,72 @@ public class PlayerManager : MonoBehaviour
             destructableWall.Container[i].Open = false;
         }
     }
-
-    public IEnumerator cantMoveFor(float T)
-    {
-        cantMove = true;
-        rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(T);
-        cantMove = false;
-    }
-    public IEnumerator cantJumpFor(float T)
-    {
-        cantJump = true;
-        yield return new WaitForSeconds(T);
-        cantJump = false;
-    }
-    public IEnumerator cantActionFor(float T)
-    {
-        cantAction = true;
-        yield return new WaitForSeconds(T);
-        cantAction = false;
-    }
-    public IEnumerator refreshTime(float T)
-    {
-        refreshSkill = true;
-        yield return new WaitForSeconds(T);
-        refreshSkill = false;
-    }
     private void OnApplicationQuit()
     {
         ClearAll();
     }
-
     public void GravityChange(int padrao1)
     {
         gravityChange = padrao1;
     }
-
     public void DragChange(float padrao1f)
     {
         rb.drag = padrao1f;
     }
+
+#region GET REGION
+    public bool getHasLantern()
+    {
+        return this.hasLantern;
+    }
+    public bool getLanternIsCharged()
+    {
+        return this.lanternIsCharged;
+    }
+    public bool getSkill_Impact()
+    {
+        return this.skill_Impact;
+    }
+    public bool getSkill_WallJump()
+    {
+        return this.skill_Walljump;
+    }
+    public bool getSkill_WaterBubble()
+    {
+        return this.skill_WaterBubble;
+    }
+    public bool getSkill_DoubleJump()
+    {
+        return this.skill_DoubleJump;
+    }
+
+#endregion
+
+#region SET REGION
+    public void setHasLantern(bool hasLantern)
+    {
+        this.hasLantern = hasLantern;
+    }
+    public void setLanternIsCharged(bool lanternIsCharged)
+    {
+        this.lanternIsCharged = lanternIsCharged;
+    }
+    public void setSkill_WallJump(bool skill_Walljump)
+    {
+        this.skill_Walljump = skill_Walljump;
+    }
+    public void setSkill_DoubleJump(bool skill_DoubleJump)
+    {
+        this.skill_DoubleJump = skill_DoubleJump;
+    }
+    public void setSkill_WaterBubble(bool skill_WaterBubble)
+    {
+        this.skill_WaterBubble = skill_WaterBubble;
+    }
+    public void setSkill_Impact(bool skill_Impact)
+    {
+        this.skill_Impact = skill_Impact;
+    }
+
+#endregion
 }

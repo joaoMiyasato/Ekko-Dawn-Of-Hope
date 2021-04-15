@@ -148,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
 #region Jump
-            if(!PlayerManager.instance.cantJump && 
+            if(!PlayerManager.instance.playerBase.getCantJump() && 
             !PlayerManager.instance.playerHabilities.healing &&
             !PlayerManager.instance.playerHabilities.sliding &&
             !PlayerManager.instance.playerHabilities.GImpact)
@@ -156,13 +156,13 @@ public class PlayerMovement : MonoBehaviour
                 jump();
             }
 
-            if(PlayerManager.instance.playerHabilities.wallJumping && PlayerManager.instance.Skill_DoubleJump)
+            if(PlayerManager.instance.playerHabilities.wallJumping && PlayerManager.instance.getSkill_DoubleJump())
             {
                 jumpCount = 1;
             }
 #endregion
 
-            if(PlayerManager.instance.playerBase.Back)
+            if(PlayerManager.instance.playerBase.knockback)
             {
                 Recovering();
             }
@@ -201,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
 #endregion
 
 #region Move
-        if(!PlayerManager.instance.cantMove && 
+        if(!PlayerManager.instance.playerBase.getCantMove() && 
         !PlayerManager.instance.playerHabilities.healing &&
         !PlayerManager.instance.playerHabilities.inWaterBubble &&
         !PlayerManager.instance.playerHabilities.GImpact)
@@ -283,7 +283,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(PlayerManager.instance.playerHabilities.floating)
         {
-            if(!PlayerManager.instance.Skill_DoubleJump)
+            if(!PlayerManager.instance.getSkill_DoubleJump())
             {
                 jumpCount = singleJump;
             }
@@ -312,7 +312,7 @@ public class PlayerMovement : MonoBehaviour
         {  
             if(!floorHit && isGrounded)
             {
-                if(!PlayerManager.instance.Skill_DoubleJump)
+                if(!PlayerManager.instance.getSkill_DoubleJump())
                 {
                     jumpCount = singleJump;
                 }
@@ -335,14 +335,14 @@ public class PlayerMovement : MonoBehaviour
                 if(inDropdownMaxSpd <= 1 && inDropdownMaxSpd > 0.5)
                 {
                     CameraControl.instance.StartShake(0.3f,0.2f,0.3f);
-                    StartCoroutine(PlayerManager.instance.cantMoveFor(0.25f));
-                    StartCoroutine(PlayerManager.instance.cantActionFor(0.25f));
+                    StartCoroutine(PlayerManager.instance.playerBase.cantMoveFor(0.25f));
+                    StartCoroutine(PlayerManager.instance.playerBase.cantActionFor(0.25f));
                 }
                 else if(inDropdownMaxSpd > 1)
                 {
                     CameraControl.instance.StartShake(0.5f,0.4f,0.5f);
-                    StartCoroutine(PlayerManager.instance.cantMoveFor(0.45f));
-                    StartCoroutine(PlayerManager.instance.cantActionFor(0.45f));
+                    StartCoroutine(PlayerManager.instance.playerBase.cantMoveFor(0.45f));
+                    StartCoroutine(PlayerManager.instance.playerBase.cantActionFor(0.45f));
                 }
                 inDropdownMaxSpd = 0;
                 PlayerManager.instance.playerHabilities.impactStage = 0;
@@ -368,20 +368,20 @@ public class PlayerMovement : MonoBehaviour
                     if(PlayerManager.instance.playerHabilities.impactStage == 0)
                     {
                         CameraControl.instance.StartShake(0.3f,0.15f,2f);
-                        StartCoroutine(PlayerManager.instance.cantMoveFor(0.2f));
-                        StartCoroutine(PlayerManager.instance.cantJumpFor(0.2f));
+                        StartCoroutine(PlayerManager.instance.playerBase.cantMoveFor(0.2f));
+                        StartCoroutine(PlayerManager.instance.playerBase.cantJumpFor(0.2f));
                     }
                     else if(PlayerManager.instance.playerHabilities.impactStage == 1)
                     {
                         CameraControl.instance.StartShake(0.4f,0.22f,3f);
-                        StartCoroutine(PlayerManager.instance.cantMoveFor(0.3f));
-                        StartCoroutine(PlayerManager.instance.cantJumpFor(0.3f));
+                        StartCoroutine(PlayerManager.instance.playerBase.cantMoveFor(0.3f));
+                        StartCoroutine(PlayerManager.instance.playerBase.cantJumpFor(0.3f));
                     }
                     else if(PlayerManager.instance.playerHabilities.impactStage == 2)
                     {
                         CameraControl.instance.StartShake(0.5f,0.3f,4f);
-                        StartCoroutine(PlayerManager.instance.cantMoveFor(0.4f));
-                        StartCoroutine(PlayerManager.instance.cantJumpFor(0.4f));
+                        StartCoroutine(PlayerManager.instance.playerBase.cantMoveFor(0.4f));
+                        StartCoroutine(PlayerManager.instance.playerBase.cantJumpFor(0.4f));
                     }
                     inDropdownMaxSpd = 0;
                     PlayerManager.instance.playerHabilities.impactStage = 0;
@@ -399,7 +399,7 @@ public class PlayerMovement : MonoBehaviour
                 if(PlayerManager.instance.playerHabilities.GImpact)
                 {
                     PlayerManager.instance.playerHabilities.inWaterBubble = true;
-                    PlayerManager.instance.refreshSkill = false;
+                    PlayerManager.instance.playerBase.setRefreshSkill(false);
                     PlayerManager.instance.playerHabilities.GImpact = false;
                 }
                 inDropdownMaxSpd = 0;
@@ -433,7 +433,7 @@ public class PlayerMovement : MonoBehaviour
         moving = false;
         isJumping = false;
         PlayerManager.instance.rb.sharedMaterial = normal;
-        PlayerManager.instance.playerBase.Back = false;
+        PlayerManager.instance.playerBase.knockback = false;
         PlayerManager.instance.rb.velocity = Vector2.zero;
         PlayerManager.instance.rb.AddForce(Recover, ForceMode2D.Impulse);
     }

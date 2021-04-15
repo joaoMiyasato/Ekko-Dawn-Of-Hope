@@ -15,11 +15,11 @@ public class MemoryButton : MonoBehaviour, ISelectHandler
 
     private ItemObject GetThisMemory()
     {
-        for(int i = 0; i < PlayerManager.instance.inventoryManager.memory.Container.Count; i++)
+        for(int i = 0; i < PlayerManager.instance.inventoryMemory.Container.Count; i++)
         {
             if(buttonID == i)
             {
-                thisMemory = PlayerManager.instance.inventoryManager.memory.Container[i].item;
+                thisMemory = PlayerManager.instance.inventoryMemory.Container[i].item;
             }
         }
 

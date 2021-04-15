@@ -31,38 +31,38 @@ public class Chest : MonoBehaviour
         {
             interact.interacting = false;
 
-            if(PlayerManager.instance.Lantern != true)
+            if(PlayerManager.instance.getHasLantern() != true)
             {
-                PlayerManager.instance.Lantern = hasLantern;
+                PlayerManager.instance.setHasLantern(hasLantern);
             }
 
-            PlayerManager.instance.PowerPoints += powerPoints;
+            PlayerManager.instance.playerBase.addPowerPoints(powerPoints);
 
-            PlayerManager.instance.EnergyStones += energyStones;
+            PlayerManager.instance.playerBase.addEnergyStones(energyStones);
 
             if(memory != null)
             {
-                PlayerManager.instance.inventoryManager.memory.AddItem(memory, 1);
+                PlayerManager.instance.inventoryMemory.AddItem(memory, 1);
             }
 
             if(jewel != null)
             {
-                PlayerManager.instance.inventoryManager.jewel.AddItem(jewel, 1);
+                PlayerManager.instance.inventoryJewel.AddItem(jewel, 1);
             }
 
             if(syntesis1 != null)
             {
-                PlayerManager.instance.inventoryManager.syntesis.AddItem(syntesis1, synCount1);
+                PlayerManager.instance.inventorySyntesis.AddItem(syntesis1, synCount1);
             }
 
             if(syntesis2 != null)
             {
-                PlayerManager.instance.inventoryManager.syntesis.AddItem(syntesis2, synCount2);
+                PlayerManager.instance.inventorySyntesis.AddItem(syntesis2, synCount2);
             }
 
             if(syntesis3 != null)
             {
-                PlayerManager.instance.inventoryManager.syntesis.AddItem(syntesis3, synCount3);
+                PlayerManager.instance.inventorySyntesis.AddItem(syntesis3, synCount3);
             }
         }
     }

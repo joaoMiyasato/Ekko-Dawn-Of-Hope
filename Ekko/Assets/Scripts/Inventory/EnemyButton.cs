@@ -15,11 +15,11 @@ public class EnemyButton : MonoBehaviour, ISelectHandler
 
     private ItemObject GetThisEnemy()
     {
-        for(int i = 0; i < PlayerManager.instance.inventoryManager.enemy.Container.Count; i++)
+        for(int i = 0; i < PlayerManager.instance.inventoryEnemy.Container.Count; i++)
         {
             if(buttonID == i)
             {
-                thisEnemy = PlayerManager.instance.inventoryManager.enemy.Container[i].item;
+                thisEnemy = PlayerManager.instance.inventoryEnemy.Container[i].item;
             }
         }
 

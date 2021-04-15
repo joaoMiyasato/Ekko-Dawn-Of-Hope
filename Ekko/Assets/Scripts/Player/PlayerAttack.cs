@@ -44,7 +44,7 @@ public class PlayerAttack : MonoBehaviour
         curInterval += Time.deltaTime;
         if(Input.GetKeyDown(KeyCode.X) && !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
         {
-            if(!PlayerManager.instance.cantAction)
+            if(!PlayerManager.instance.playerBase.getCantAction())
             {
                 if(curInterval >= attackInterval)
                 {
@@ -63,7 +63,7 @@ public class PlayerAttack : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.UpArrow))
         {
-            if(!PlayerManager.instance.cantAction)
+            if(!PlayerManager.instance.playerBase.getCantAction())
             {
                 if(curInterval >= attackInterval)
                 {
@@ -76,7 +76,7 @@ public class PlayerAttack : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.DownArrow) && !PlayerManager.instance.playerMovement.isGrounded)
         {
-            if(!PlayerManager.instance.cantAction)
+            if(!PlayerManager.instance.playerBase.getCantAction())
             {
                 if(curInterval >= attackInterval)
                 {
@@ -136,8 +136,7 @@ public class PlayerAttack : MonoBehaviour
             PlayerManager.instance.rb.velocity = new Vector2(0,PlayerManager.instance.rb.velocity.y);
             if(hit.gameObject.tag == "Enemy" || hit.gameObject.tag == "Boss")
             {
-                PlayerManager.instance.curEnergy += 30;
-                PlayerManager.instance.PowerPoints += 10;
+                PlayerManager.instance.playerBase.addEnergy(30);
                 hit.GetComponent<EnemyBase>().takeDamage(atkDamage);
             }
             else if(hit.gameObject.layer == 13)
@@ -157,8 +156,7 @@ public class PlayerAttack : MonoBehaviour
             hitted = true;
             if(hit.gameObject.tag == "Enemy" || hit.gameObject.tag == "Boss")
             {
-                PlayerManager.instance.curEnergy += 30;
-                PlayerManager.instance.PowerPoints += 10;
+                PlayerManager.instance.playerBase.addEnergy(30);
                 hit.GetComponent<EnemyBase>().takeDamage(atkDamage);
             }
             else if(hit.gameObject.layer == 13)
@@ -182,8 +180,7 @@ public class PlayerAttack : MonoBehaviour
             }
             if(hit.gameObject.tag == "Enemy" || hit.gameObject.tag == "Boss")
             {
-                PlayerManager.instance.curEnergy += 30;
-                PlayerManager.instance.PowerPoints += 10;
+                PlayerManager.instance.playerBase.addEnergy(30);
                 hit.GetComponent<EnemyBase>().takeDamage(atkDamage);
             }
             else if(hit.gameObject.layer == 13)
@@ -195,8 +192,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void knockBack()
     {
-        StartCoroutine(PlayerManager.instance.cantActionFor(0.2f));
-        StartCoroutine(PlayerManager.instance.cantMoveFor(0.2f));
+        StartCoroutine(PlayerManager.instance.playerBase.cantActionFor(0.2f));
+        StartCoroutine(PlayerManager.instance.playerBase.cantMoveFor(0.2f));
         a+= Time.deltaTime;
         if(a > b)
         {

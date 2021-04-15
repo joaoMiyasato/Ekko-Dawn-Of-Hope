@@ -63,8 +63,8 @@ public class Transições : MonoBehaviour
         if(other.tag == "Player")
         {
             GameManager.instance.transition = true;
-            PlayerManager.instance.cantMove = true;
-            PlayerManager.instance.cantAction = true;
+            PlayerManager.instance.playerBase.setCantMove(true);
+            PlayerManager.instance.playerBase.setCantAction(true);
             if(hor)
             {
                 GameManager.instance.Xtransition = true;

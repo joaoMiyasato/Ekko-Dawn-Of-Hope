@@ -34,10 +34,10 @@ public class Save_Load : MonoBehaviour
     public void SavePlayer(string _pathPlayer, string _pathI1, string _pathI2, string _pathI3, string _pathI4)
     {
         SaveSystem.SavePlayer(UI_manager.instance.playerSave, _pathPlayer);
-        PlayerManager.instance.inventoryManager.enemy.Save(_pathI1);
-        PlayerManager.instance.inventoryManager.jewel.Save(_pathI2);
-        PlayerManager.instance.inventoryManager.memory.Save(_pathI3);
-        PlayerManager.instance.inventoryManager.syntesis.Save(_pathI4);
+        PlayerManager.instance.inventoryEnemy.Save(_pathI1);
+        PlayerManager.instance.inventoryJewel.Save(_pathI2);
+        PlayerManager.instance.inventoryMemory.Save(_pathI3);
+        PlayerManager.instance.inventorySyntesis.Save(_pathI4);
     }
     
     public void LoadPlayer(string _pathPlayer, string _pathI1, string _pathI2, string _pathI3, string _pathI4)
@@ -54,24 +54,24 @@ public class Save_Load : MonoBehaviour
         {
             PlayerData data = SaveSystem.LoadPlayer(_pathPlayer);
         
-            PlayerManager.instance.maxLife = data.maxHealth;
-            PlayerManager.instance.curLife = data.health;
-            PlayerManager.instance.maxEnergy = data.maxEnergy;
-            PlayerManager.instance.curEnergy = data.energy;
-            PlayerManager.instance.PowerPoints = data.powerPoints;
-            PlayerManager.instance.EnergyStones = data.energyStone;
+            PlayerManager.instance.playerBase.setMaxLife(data.maxHealth);
+            PlayerManager.instance.playerBase.setCurLife(data.curHealth);
+            PlayerManager.instance.playerBase.setMaxEnergy(data.maxEnergy);
+            PlayerManager.instance.playerBase.setCurEnergy(data.curEnergy);
+            PlayerManager.instance.playerBase.setPowerPoints(data.powerPoints);
+            PlayerManager.instance.playerBase.setEnergyStones(data.energyStone);
 
-            PlayerManager.instance.Lantern = data.hasLantern;
+            PlayerManager.instance.setHasLantern(data.hasLantern);
 
             Vector2 position;
             position.x = data.position[0];
             position.y = data.position[1];
             GameObject.FindWithTag("Player").gameObject.transform.position = position;
 
-            PlayerManager.instance.inventoryManager.enemy.Load(_pathI1);
-            PlayerManager.instance.inventoryManager.jewel.Load(_pathI2);
-            PlayerManager.instance.inventoryManager.memory.Load(_pathI3);
-            PlayerManager.instance.inventoryManager.syntesis.Load(_pathI4);
+            PlayerManager.instance.inventoryEnemy.Load(_pathI1);
+            PlayerManager.instance.inventoryJewel.Load(_pathI2);
+            PlayerManager.instance.inventoryMemory.Load(_pathI3);
+            PlayerManager.instance.inventorySyntesis.Load(_pathI4);
 
             for (int i = 0; i < PlayerManager.instance.chests.Container.Count; i++)
             {
@@ -82,8 +82,10 @@ public class Save_Load : MonoBehaviour
                 PlayerManager.instance.destructableWall.Container[i].Open = data.destructableWall[i];
             }
 
-            PlayerManager.instance.Skill_Impact = data.skillImpact;
-            PlayerManager.instance.Skill_Walljump = data.skillWalljump;
+            PlayerManager.instance.setSkill_Impact(data.skillImpact);
+            PlayerManager.instance.setSkill_WallJump(data.skillWalljump);
+            PlayerManager.instance.setSkill_DoubleJump(data.skillDoubleJump);
+            PlayerManager.instance.setSkill_WaterBubble(data.skillWaterBubble);
         }
     }
 

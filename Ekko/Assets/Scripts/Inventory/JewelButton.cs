@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Text;
 
-public class ItemButton : MonoBehaviour, ISelectHandler
+public class JewelButton : MonoBehaviour, ISelectHandler
 {
     public int buttonID;
     public ItemObject thisItem;
@@ -13,11 +13,11 @@ public class ItemButton : MonoBehaviour, ISelectHandler
 
     private ItemObject GetThisItem()
     {
-        for(int i = 0; i < PlayerManager.instance.inventoryManager.jewel.Container.Count; i++)
+        for(int i = 0; i < PlayerManager.instance.inventoryJewel.Container.Count; i++)
         {
             if(buttonID == i)
             {
-                thisItem = PlayerManager.instance.inventoryManager.jewel.Container[i].item;
+                thisItem = PlayerManager.instance.inventoryJewel.Container[i].item;
             }
         }
 

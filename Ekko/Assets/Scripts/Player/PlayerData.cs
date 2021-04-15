@@ -5,27 +5,26 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
-    public int maxHealth, health;
-    public int maxEnergy, energy;
+    public int maxHealth, curHealth;
+    public int maxEnergy, curEnergy;
     public bool hasLantern;
     public int powerPoints;
     public int energyStone;
     public float[] position;
     public bool[] chest;
     public bool[] destructableWall;
-    public bool skillImpact;
-    public bool skillWalljump;
+    public bool skillImpact, skillWalljump, skillWaterBubble, skillDoubleJump;
 
     public PlayerData (PlayerManager player)
     {
-        maxHealth = player.maxLife;
-        health = player.curLife;
-        maxEnergy = player.maxEnergy;
-        energy = player.curEnergy;
-        powerPoints = player.PowerPoints;
-        energyStone = player.EnergyStones;
+        maxHealth = player.playerBase.getMaxLife();
+        curHealth = player.playerBase.getCurrentLife();
+        maxEnergy = player.playerBase.getMaxEnergy();
+        curEnergy = player.playerBase.getCurrentEnergy();
+        powerPoints = player.playerBase.getPowerPoints();
+        energyStone = player.playerBase.getEnergyStones();
         
-        hasLantern = player.Lantern;
+        hasLantern = player.getHasLantern();
 
         position = new float[2];
         position[0] = player.transform.position.x;
@@ -34,7 +33,9 @@ public class PlayerData
         chest = player.chestOpen;
         destructableWall = player.destructableWallOpen;
 
-        skillImpact = player.Skill_Impact;
-        skillWalljump = player.Skill_Walljump;
+        skillImpact = player.getSkill_Impact();
+        skillWalljump = player.getSkill_WallJump();
+        skillDoubleJump = player.getSkill_DoubleJump();
+        skillWaterBubble = player.getSkill_WaterBubble();
     }
 }
