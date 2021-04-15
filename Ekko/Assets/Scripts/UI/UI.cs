@@ -18,13 +18,13 @@ public class UI : MonoBehaviour
         GameManager.instance.transition = false;
         GameManager.instance.Xtransition = false;
         GameManager.instance.Ytransition = false;
-        scr_player_manager.instance.cantMove = false;
-        scr_player_manager.instance.cantAction = false;
+        PlayerManager.instance.cantMove = false;
+        PlayerManager.instance.cantAction = false;
     }
     public void Xteleport()
     {
         Physics2D.queriesStartInColliders = false;
-        RaycastHit2D hit = Physics2D.Raycast(GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position, Vector2.down, 99, scr_player_manager.instance.Pmove.whatIsGround);
+        RaycastHit2D hit = Physics2D.Raycast(GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position, Vector2.down, 99, PlayerManager.instance.playerMovement.whatIsGround);
         GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position = new Vector3(GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position.x, GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position.y-hit.distance+2,0);
     }
     public void Yteleport()

@@ -10,11 +10,11 @@ public class MapDamage : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            other.GetComponent<scr_player_base>().takeDamage(damage, teleport);
+            other.GetComponent<PlayerBase>().takeDamage(damage, teleport);
         }
         else if(other.gameObject.layer == 10)
         {
-            other.GetComponent<scr_IA_base>().takeDamage(99);
+            other.GetComponent<EnemyBase>().takeDamage(99);
         }
     }
 }

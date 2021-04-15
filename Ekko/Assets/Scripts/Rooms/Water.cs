@@ -19,10 +19,10 @@ public class Water : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            other.GetComponent<scr_player_habilities>().onWater = true;
-            if(!other.GetComponent<scr_player_habilities>().inWaterBubble && !other.GetComponent<scr_player_habilities>().floating)
+            other.GetComponent<PlayerHabilities>().onWater = true;
+            if(!other.GetComponent<PlayerHabilities>().inWaterBubble && !other.GetComponent<PlayerHabilities>().floating)
             {
-                StartCoroutine(other.GetComponent<scr_player_base>()._damageTick(damage,tickRate));
+                StartCoroutine(other.GetComponent<PlayerBase>()._damageTick(damage,tickRate));
             }
             
             if(changeFlow)
@@ -44,10 +44,10 @@ public class Water : MonoBehaviour
         {
             if(other.tag == "Player")
             {
-                scr_player_manager.instance.Phabilities.onWater = false;
-                scr_player_manager.instance.Phabilities.cancelBubble = false;
-                scr_player_manager.instance.DragChange(1f);
-                scr_player_manager.instance.GravityChange(1);
+                PlayerManager.instance.playerHabilities.onWater = false;
+                PlayerManager.instance.playerHabilities.cancelBubble = false;
+                PlayerManager.instance.DragChange(1f);
+                PlayerManager.instance.GravityChange(1);
             }
         }
     }

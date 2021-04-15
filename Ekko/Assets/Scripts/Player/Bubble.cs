@@ -11,9 +11,9 @@ public class Bubble : MonoBehaviour
         {
             if(other.collider.tag == "Ground" || other.collider.tag == "Wall" || other.collider.tag == "GroundDestructable")
             {
-                if(!GetComponentInParent<scr_player_habilities>().onWater)
+                if(!GetComponentInParent<PlayerHabilities>().onWater)
                 {
-                    GetComponentInParent<scr_player_habilities>().inWaterBubble = false;
+                    GetComponentInParent<PlayerHabilities>().inWaterBubble = false;
                 }
             } 
         }
@@ -21,11 +21,11 @@ public class Bubble : MonoBehaviour
         {
             if(other.collider.tag == "Ground" || other.collider.tag == "Wall" || other.collider.tag == "GroundDestructable")
             {
-                if(GetComponentInParent<scr_player_habilities>().onWater)
+                if(GetComponentInParent<PlayerHabilities>().onWater)
                 {
-                    scr_player_manager.instance.Phabilities.cancelBubble = true;
+                    PlayerManager.instance.playerHabilities.cancelBubble = true;
                 }
-                GetComponentInParent<scr_player_habilities>().inWaterBubble = false;
+                GetComponentInParent<PlayerHabilities>().inWaterBubble = false;
             } 
         }
     }

@@ -13,9 +13,9 @@ public class WaterSurface : MonoBehaviour
         {
             if(other.tag == "Player")
             {
-                if(!other.GetComponent<scr_player_habilities>().inWaterBubble)
+                if(!other.GetComponent<PlayerHabilities>().inWaterBubble)
                 {
-                    other.GetComponent<scr_player_habilities>().floating = true;
+                    other.GetComponent<PlayerHabilities>().floating = true;
                 }
             }
         }
@@ -26,7 +26,7 @@ public class WaterSurface : MonoBehaviour
         {
             if(other.tag == "Player")
             {
-                other.GetComponent<scr_player_habilities>().floating = false;
+                other.GetComponent<PlayerHabilities>().floating = false;
             }
         }
     }

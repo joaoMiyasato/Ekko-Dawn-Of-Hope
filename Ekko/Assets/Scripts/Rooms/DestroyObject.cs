@@ -47,12 +47,12 @@ public class DestroyObject : MonoBehaviour
         {
             if(!match.Open)
             {
-                scr_camera.instance.StartShake(0.1f,0.2f,2f);
+                CameraControl.instance.StartShake(0.1f,0.2f,2f);
             }
             match.Open = true;
             if(destroyableObject)
             {
-                scr_camera.instance.StartShake(0.1f,0.2f,2f);
+                CameraControl.instance.StartShake(0.1f,0.2f,2f);
                 if(Attach != null)
                 {
                     Destroy(Attach);
@@ -70,7 +70,7 @@ public class DestroyObject : MonoBehaviour
             {
                 if(!match.Open)
                 {
-                    scr_camera.instance.StartShake(0.1f,0.2f,2f);
+                    CameraControl.instance.StartShake(0.1f,0.2f,2f);
                 }
                 match.Open = true;
                 if(Attach != null)

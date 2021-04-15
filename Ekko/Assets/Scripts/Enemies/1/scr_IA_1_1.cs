@@ -36,7 +36,7 @@ public class scr_IA_1_1 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(chasing && !GetComponent<scr_IA_base>().Recover)
+        if(chasing && !GetComponent<EnemyBase>().Recover)
         {
             inChase();
         }
@@ -44,7 +44,7 @@ public class scr_IA_1_1 : MonoBehaviour
         {
             offChase();
         }
-        else if(GetComponent<scr_IA_base>().Recover)
+        else if(GetComponent<EnemyBase>().Recover)
         {
             Back();
         }
@@ -170,7 +170,7 @@ public class scr_IA_1_1 : MonoBehaviour
 
     private void Back()
     {
-        if(GetComponent<scr_IA_base>().Back)
+        if(GetComponent<EnemyBase>().Back)
         {
             if(distX >= 0.5)
             {
@@ -200,7 +200,7 @@ public class scr_IA_1_1 : MonoBehaviour
         rb.AddForce(new Vector2(Rx,Ry),ForceMode2D.Impulse);
         curSX = 0;
         curSY = 0;
-        GetComponent<scr_IA_base>().Back = false;
+        GetComponent<EnemyBase>().Back = false;
         }
     }
 }

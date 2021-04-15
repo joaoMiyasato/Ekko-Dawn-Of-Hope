@@ -8,7 +8,7 @@ public class BubbleSpike : MonoBehaviour
     {
         if(other.tag == "Enemy")
         {
-            other.GetComponent<scr_IA_base>().takeDamage(scr_player_manager.instance.Pattack.atkDamage);
+            other.GetComponent<EnemyBase>().takeDamage(PlayerManager.instance.playerAttack.atkDamage);
         }
         if(other.tag == "GroundDestructable")
         {

@@ -76,15 +76,15 @@ public class scr_IA_2_1 : MonoBehaviour
             facingWall = false;
         }
 
-        if(patrolling && !GetComponent<scr_IA_base>().Recover && !attacking)
+        if(patrolling && !GetComponent<EnemyBase>().Recover && !attacking)
         {
             Patrolling();
         }
-        else if(GetComponent<scr_IA_base>().Recover)
+        else if(GetComponent<EnemyBase>().Recover)
         {
             Back();
         }
-        if(!GetComponent<scr_IA_base>().Recover && attacking)
+        if(!GetComponent<EnemyBase>().Recover && attacking)
         {
             Attacking();
         }
@@ -142,7 +142,7 @@ public class scr_IA_2_1 : MonoBehaviour
     }
     private void Back()
     {
-        if(GetComponent<scr_IA_base>().Back)
+        if(GetComponent<EnemyBase>().Back)
         {
             attacking = false;
             curAttackTime = attackTime;
@@ -165,7 +165,7 @@ public class scr_IA_2_1 : MonoBehaviour
                 rb.AddForce(Recovering,ForceMode2D.Impulse);
             }
         }
-        GetComponent<scr_IA_base>().Back = false;
+        GetComponent<EnemyBase>().Back = false;
     }
 
     void detectRayCollision()

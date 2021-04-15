@@ -22,7 +22,7 @@ public class onAnimationControl : MonoBehaviour
 
     public void shake()
     {
-        scr_camera.instance.StartShake(pow,tim,rot);
+        CameraControl.instance.StartShake(pow,tim,rot);
     }
 
 

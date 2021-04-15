@@ -17,13 +17,13 @@ public class Transições : MonoBehaviour
         {
         if(GameManager.instance.Xtransition)
         {
-            if(scr_player_manager.instance.rb.velocity.x > 0)
+            if(PlayerManager.instance.rb.velocity.x > 0)
             {
-                scr_player_manager.instance.rb.velocity = new Vector2(scr_player_manager.instance.Pmove.SpeedFix*2/3, scr_player_manager.instance.rb.velocity.y);
+                PlayerManager.instance.rb.velocity = new Vector2(PlayerManager.instance.playerMovement.SpeedFix*2/3, PlayerManager.instance.rb.velocity.y);
             }
-            else if(scr_player_manager.instance.rb.velocity.x < 0)
+            else if(PlayerManager.instance.rb.velocity.x < 0)
             {
-                scr_player_manager.instance.rb.velocity = new Vector2(-scr_player_manager.instance.Pmove.SpeedFix*2/3, scr_player_manager.instance.rb.velocity.y);
+                PlayerManager.instance.rb.velocity = new Vector2(-PlayerManager.instance.playerMovement.SpeedFix*2/3, PlayerManager.instance.rb.velocity.y);
             }
         }
         }
@@ -31,27 +31,27 @@ public class Transições : MonoBehaviour
         {
         if(GameManager.instance.Ytransition)
         {
-            if(scr_player_manager.instance.rb.velocity.y < 0)
+            if(PlayerManager.instance.rb.velocity.y < 0)
             {
                 GameManager.instance.YtransitionForce = false;
-                scr_player_manager.instance.rb.velocity = new Vector2(0, -12);
+                PlayerManager.instance.rb.velocity = new Vector2(0, -12);
             }
-            else if(scr_player_manager.instance.rb.velocity.y > 0)
+            else if(PlayerManager.instance.rb.velocity.y > 0)
             {
-                if(scr_player_manager.instance.Pmove.facingRight)
+                if(PlayerManager.instance.playerMovement.facingRight)
                 {
-                    scr_player_manager.instance.rb.velocity = new Vector2(scr_player_manager.instance.Pmove.SpeedFix/3+xForce, scr_player_manager.instance.rb.velocity.y);
+                    PlayerManager.instance.rb.velocity = new Vector2(PlayerManager.instance.playerMovement.SpeedFix/3+xForce, PlayerManager.instance.rb.velocity.y);
                     if(GameManager.instance.YtransitionForce)
                     {
-                        scr_player_manager.instance.rb.velocity = new Vector2(scr_player_manager.instance.rb.velocity.x, yForce);
+                        PlayerManager.instance.rb.velocity = new Vector2(PlayerManager.instance.rb.velocity.x, yForce);
                     }
                 }
-                else if(!scr_player_manager.instance.Pmove.facingRight)
+                else if(!PlayerManager.instance.playerMovement.facingRight)
                 {
-                    scr_player_manager.instance.rb.velocity = new Vector2(-scr_player_manager.instance.Pmove.SpeedFix/3-xForce, scr_player_manager.instance.rb.velocity.y);
+                    PlayerManager.instance.rb.velocity = new Vector2(-PlayerManager.instance.playerMovement.SpeedFix/3-xForce, PlayerManager.instance.rb.velocity.y);
                     if(GameManager.instance.YtransitionForce)
                     {
-                        scr_player_manager.instance.rb.velocity = new Vector2(scr_player_manager.instance.rb.velocity.x, yForce);
+                        PlayerManager.instance.rb.velocity = new Vector2(PlayerManager.instance.rb.velocity.x, yForce);
                     }
                 }
             }
@@ -63,8 +63,8 @@ public class Transições : MonoBehaviour
         if(other.tag == "Player")
         {
             GameManager.instance.transition = true;
-            scr_player_manager.instance.cantMove = true;
-            scr_player_manager.instance.cantAction = true;
+            PlayerManager.instance.cantMove = true;
+            PlayerManager.instance.cantAction = true;
             if(hor)
             {
                 GameManager.instance.Xtransition = true;

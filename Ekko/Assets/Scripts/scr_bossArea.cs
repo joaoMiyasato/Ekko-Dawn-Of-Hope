@@ -29,7 +29,7 @@ public class scr_bossArea : MonoBehaviour
                     Door3.SetActive(true);
                 }
 
-                boss.GetComponent<scr_IA_base>().bossActivated = true;
+                boss.GetComponent<EnemyBase>().bossActivated = true;
             }
         }
         else

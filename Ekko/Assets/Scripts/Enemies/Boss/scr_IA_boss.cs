@@ -6,7 +6,7 @@ public class scr_IA_boss : MonoBehaviour
 {
     public GameObject Player;
     public Transform state3;
-    private scr_IA_base IAbase;
+    private EnemyBase enemyBase;
     private Rigidbody2D rb;
     private int state = 1;
     private float dist;
@@ -28,7 +28,7 @@ public class scr_IA_boss : MonoBehaviour
     private bool drop;
     void Start()
     {
-        IAbase = GetComponent<scr_IA_base>();
+        enemyBase = GetComponent<EnemyBase>();
         rb = GetComponent<Rigidbody2D>();
         
         aheadSpeed.x = 15f;
@@ -55,7 +55,7 @@ public class scr_IA_boss : MonoBehaviour
     private void FixedUpdate()
     {
         switchState();
-        if(IAbase.bossActivated)
+        if(enemyBase.bossActivated)
         {   
             if(state == 0)
             {

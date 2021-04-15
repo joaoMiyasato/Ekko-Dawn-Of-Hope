@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
-    public static void SavePlayer(scr_player_manager player, string _path)
+    public static void SavePlayer(PlayerManager player, string _path)
     {
         string folder = Application.persistentDataPath + "/saves/saveSlot"+Save_Load.instance.saveSlot+"/";
         Directory.CreateDirectory(folder);

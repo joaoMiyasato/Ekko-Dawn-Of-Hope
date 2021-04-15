@@ -9,7 +9,7 @@ public class ItemPickup : MonoBehaviour
         var item = other.GetComponent<Item>();
         if(item)
         {
-            scr_player_manager.instance.inventorySyntesis.AddItem(item.item,1);
+            PlayerManager.instance.inventoryManager.syntesis.AddItem(item.item,1);
             Destroy(other.gameObject);
         }
         UI_manager.instance.DisplaySyntesis();

@@ -16,7 +16,7 @@ public class PlayerData
     public bool skillImpact;
     public bool skillWalljump;
 
-    public PlayerData (scr_player_manager player)
+    public PlayerData (PlayerManager player)
     {
         maxHealth = player.maxLife;
         health = player.curLife;

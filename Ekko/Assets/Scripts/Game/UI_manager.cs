@@ -38,12 +38,12 @@ public class UI_manager : MonoBehaviour
 
     public ItemObject previousItem;
 
-    public scr_player_manager playerSave;
+    public PlayerManager playerSave;
 
     
     public GameObject[] slots;
-    public scr_item_button thisButton;
-    public scr_item_button[] itemButtons;
+    public ItemButton thisButton;
+    public ItemButton[] itemButtons;
     public GameObject[] enemiesSlots;
     public GameObject[] memoriesSlots;
     public GameObject[] syntesisSlots;
@@ -76,7 +76,7 @@ public class UI_manager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         subMenu = Menu1.transform.Find("subMenus").gameObject;
 
-        playerSave = player.GetComponent<scr_player_manager>();
+        playerSave = player.GetComponent<PlayerManager>();
         
         DisplaySyntesis();
         DisplayItems();
@@ -136,10 +136,10 @@ public class UI_manager : MonoBehaviour
             curMenuShow.SetActive(true);
             Tab.GetComponent<Text>().text = "Inventário";
 
-            if(scr_player_manager.instance.Lantern == true)
+            if(PlayerManager.instance.Lantern == true)
             {
                 Menu0.transform.Find("Lantern").gameObject.transform.Find("Text").gameObject.SetActive(true);
-                if(scr_player_manager.instance.LanternIsCharged == false)
+                if(PlayerManager.instance.LanternIsCharged == false)
                 {
                     Menu0.transform.Find("Lantern").gameObject.transform.Find("Text").gameObject.GetComponent<Text>().text = "Descarregado";
                 }
@@ -218,9 +218,9 @@ public class UI_manager : MonoBehaviour
 
     private void playerInterfaceControl()
     {
-        playerInterface.transform.Find("Health").gameObject.GetComponent<UnityEngine.UI.Text>().text = "Life: "+scr_player_manager.instance.curLife;
-        playerInterface.transform.Find("soulBar").gameObject.GetComponent<Slider>().maxValue = scr_player_manager.instance.maxEnergy;
-        playerInterface.transform.Find("soulBar").gameObject.GetComponent<Slider>().value = scr_player_manager.instance.curEnergy;
+        playerInterface.transform.Find("Health").gameObject.GetComponent<UnityEngine.UI.Text>().text = "Life: "+PlayerManager.instance.curLife;
+        playerInterface.transform.Find("soulBar").gameObject.GetComponent<Slider>().maxValue = PlayerManager.instance.maxEnergy;
+        playerInterface.transform.Find("soulBar").gameObject.GetComponent<Slider>().value = PlayerManager.instance.curEnergy;
     }
 #endregion
 
@@ -334,17 +334,17 @@ public class UI_manager : MonoBehaviour
 
     private void DisplayEnemies()
     {
-        for(int i = 0; i < scr_player_manager.instance.inventoryEnemy.Container.Count; i++)
+        for(int i = 0; i < PlayerManager.instance.inventoryManager.enemy.Container.Count; i++)
         {
             enemiesSlots[i].GetComponent<Text>().color = new Color(1,1,1,1);
-            enemiesSlots[i].GetComponent<Text>().text = scr_player_manager.instance.inventoryEnemy.Container[i].item.Name;
+            enemiesSlots[i].GetComponent<Text>().text = PlayerManager.instance.inventoryManager.enemy.Container[i].item.Name;
         }
         for(int i = 0; i < enemiesSlots.Length; i++)
         {
-            if(i < scr_player_manager.instance.inventoryEnemy.Container.Count)
+            if(i < PlayerManager.instance.inventoryManager.enemy.Container.Count)
             {
                 enemiesSlots[i].GetComponent<Text>().color = new Color(1,1,1,1);
-                enemiesSlots[i].GetComponent<Text>().text = scr_player_manager.instance.inventoryEnemy.Container[i].item.Name;
+                enemiesSlots[i].GetComponent<Text>().text = PlayerManager.instance.inventoryManager.enemy.Container[i].item.Name;
             }
             else
             {
@@ -355,17 +355,17 @@ public class UI_manager : MonoBehaviour
     }
     private void DisplayMemories()
     {
-        for(int i = 0; i < scr_player_manager.instance.inventoryMemory.Container.Count; i++)
+        for(int i = 0; i < PlayerManager.instance.inventoryManager.memory.Container.Count; i++)
         {
             memoriesSlots[i].transform.GetChild(0).GetComponent<Text>().color = new Color(1,1,1,1);
-            memoriesSlots[i].transform.GetChild(0).GetComponent<Text>().text = scr_player_manager.instance.inventoryMemory.Container[i].item.Name;
+            memoriesSlots[i].transform.GetChild(0).GetComponent<Text>().text = PlayerManager.instance.inventoryManager.memory.Container[i].item.Name;
         }
         for(int i = 0; i < memoriesSlots.Length; i++)
         {
-            if(i < scr_player_manager.instance.inventoryMemory.Container.Count)
+            if(i < PlayerManager.instance.inventoryManager.memory.Container.Count)
             {
                 memoriesSlots[i].transform.GetChild(0).GetComponent<Text>().color = new Color(1,1,1,1);
-                memoriesSlots[i].transform.GetChild(0).GetComponent<Text>().text = scr_player_manager.instance.inventoryMemory.Container[i].item.Name;
+                memoriesSlots[i].transform.GetChild(0).GetComponent<Text>().text = PlayerManager.instance.inventoryManager.memory.Container[i].item.Name;
             }
             else
             {
@@ -376,12 +376,12 @@ public class UI_manager : MonoBehaviour
     }
     private void DisplayItems()
     {
-        for (int i = 0; i < scr_player_manager.instance.inventoryJewel.Container.Count; i++)
+        for (int i = 0; i < PlayerManager.instance.inventoryManager.jewel.Container.Count; i++)
         {
             slots[i].transform.GetChild(0).GetComponent<Image>().color = new Color(1,1,1,1);
-            slots[i].transform.GetChild(0).GetComponent<Image>().sprite = scr_player_manager.instance.inventoryJewel.Container[i].item.sprite;
+            slots[i].transform.GetChild(0).GetComponent<Image>().sprite = PlayerManager.instance.inventoryManager.jewel.Container[i].item.sprite;
 
-            if(scr_player_manager.instance.inventoryJewel.Container[i].amount > 1)
+            if(PlayerManager.instance.inventoryManager.jewel.Container[i].amount > 1)
             {
                 slots[i].transform.GetChild(1).GetComponent<Text>().color = new Color(255,244,0,1);
             }
@@ -389,18 +389,18 @@ public class UI_manager : MonoBehaviour
             {
                 slots[i].transform.GetChild(1).GetComponent<Text>().color = new Color(255,244,0,0);
             }
-            slots[i].transform.GetChild(1).GetComponent<Text>().text = scr_player_manager.instance.inventoryJewel.Container[i].amount.ToString();
+            slots[i].transform.GetChild(1).GetComponent<Text>().text = PlayerManager.instance.inventoryManager.jewel.Container[i].amount.ToString();
 
             slots[i].transform.GetChild(2).gameObject.SetActive(false);
         }
         for(int i = 0; i < slots.Length; i++)
         {
-            if(i < scr_player_manager.instance.inventoryJewel.Container.Count)
+            if(i < PlayerManager.instance.inventoryManager.jewel.Container.Count)
             {
                 slots[i].transform.GetChild(0).GetComponent<Image>().color = new Color(1,1,1,1);
-                slots[i].transform.GetChild(0).GetComponent<Image>().sprite = scr_player_manager.instance.inventoryJewel.Container[i].item.sprite;
+                slots[i].transform.GetChild(0).GetComponent<Image>().sprite = PlayerManager.instance.inventoryManager.jewel.Container[i].item.sprite;
                 
-                if(scr_player_manager.instance.inventoryJewel.Container[i].amount > 1)
+                if(PlayerManager.instance.inventoryManager.jewel.Container[i].amount > 1)
                 {
                     slots[i].transform.GetChild(1).GetComponent<Text>().color = new Color(255,244,0,1);
                 }
@@ -408,7 +408,7 @@ public class UI_manager : MonoBehaviour
                 {
                     slots[i].transform.GetChild(1).GetComponent<Text>().color = new Color(255,244,0,0);
                 }
-                slots[i].transform.GetChild(1).GetComponent<Text>().text = scr_player_manager.instance.inventoryJewel.Container[i].amount.ToString();
+                slots[i].transform.GetChild(1).GetComponent<Text>().text = PlayerManager.instance.inventoryManager.jewel.Container[i].amount.ToString();
                 
                 slots[i].transform.GetChild(2).gameObject.SetActive(false);
             }
@@ -426,12 +426,12 @@ public class UI_manager : MonoBehaviour
     }
     public void DisplaySyntesis()
     {
-        for(int i = 0; i < scr_player_manager.instance.inventorySyntesis.Container.Count; i++)
+        for(int i = 0; i < PlayerManager.instance.inventoryManager.syntesis.Container.Count; i++)
         {
             syntesisSlots[i].transform.GetChild(0).GetComponent<Image>().color = new Color(1,1,1,1);
-            syntesisSlots[i].transform.GetChild(0).GetComponent<Image>().sprite = scr_player_manager.instance.inventorySyntesis.Container[i].item.sprite;
+            syntesisSlots[i].transform.GetChild(0).GetComponent<Image>().sprite = PlayerManager.instance.inventoryManager.syntesis.Container[i].item.sprite;
 
-            if(scr_player_manager.instance.inventorySyntesis.Container[i].amount > 1)
+            if(PlayerManager.instance.inventoryManager.syntesis.Container[i].amount > 1)
             {
                 syntesisSlots[i].transform.GetChild(1).GetComponent<Text>().color = new Color(204,153,0,1);
             }
@@ -439,16 +439,16 @@ public class UI_manager : MonoBehaviour
             {
                 syntesisSlots[i].transform.GetChild(1).GetComponent<Text>().color = new Color(0,0,0,0);
             }
-            syntesisSlots[i].transform.GetChild(1).GetComponent<Text>().text = scr_player_manager.instance.inventorySyntesis.Container[i].amount.ToString();
+            syntesisSlots[i].transform.GetChild(1).GetComponent<Text>().text = PlayerManager.instance.inventoryManager.syntesis.Container[i].amount.ToString();
         }
         for(int i = 0; i < syntesisSlots.Length; i++)
         {
-            if(i < scr_player_manager.instance.inventorySyntesis.Container.Count)
+            if(i < PlayerManager.instance.inventoryManager.syntesis.Container.Count)
             {
                 syntesisSlots[i].transform.GetChild(0).GetComponent<Image>().color = new Color(1,1,1,1);
-                syntesisSlots[i].transform.GetChild(0).GetComponent<Image>().sprite = scr_player_manager.instance.inventorySyntesis.Container[i].item.sprite;
+                syntesisSlots[i].transform.GetChild(0).GetComponent<Image>().sprite = PlayerManager.instance.inventoryManager.syntesis.Container[i].item.sprite;
                 
-                if(scr_player_manager.instance.inventorySyntesis.Container[i].amount > 1)
+                if(PlayerManager.instance.inventoryManager.syntesis.Container[i].amount > 1)
                 {
                     syntesisSlots[i].transform.GetChild(1).GetComponent<Text>().color = new Color(204,153,0,1);
                 }
@@ -456,7 +456,7 @@ public class UI_manager : MonoBehaviour
                 {
                     syntesisSlots[i].transform.GetChild(1).GetComponent<Text>().color = new Color(0,0,0,0);
                 }
-                syntesisSlots[i].transform.GetChild(1).GetComponent<Text>().text = scr_player_manager.instance.inventorySyntesis.Container[i].amount.ToString();
+                syntesisSlots[i].transform.GetChild(1).GetComponent<Text>().text = PlayerManager.instance.inventoryManager.syntesis.Container[i].amount.ToString();
             }
             else
             {
@@ -473,9 +473,9 @@ public class UI_manager : MonoBehaviour
     {
         for(int i = 0; i < itemButtons.Length; i++)
         {
-            if(i < scr_player_manager.instance.inventoryJewel.Container.Count)
+            if(i < PlayerManager.instance.inventoryManager.jewel.Container.Count)
             {
-                itemButtons[i].thisItem = scr_player_manager.instance.inventoryJewel.Container[i].item;
+                itemButtons[i].thisItem = PlayerManager.instance.inventoryManager.jewel.Container[i].item;
             }
             else
             {

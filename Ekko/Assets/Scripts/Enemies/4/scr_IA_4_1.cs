@@ -6,7 +6,7 @@ public class scr_IA_4_1 : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 myNormal;
-    private scr_IA_base IAbase;
+    private EnemyBase enemyBase;
     public Transform right, left, up, down, right2, left2, up2, down2;
     private bool isGroundedR, isGroundedL, isGroundedU, isGroundedD;
     public LayerMask whatIsGround;
@@ -18,7 +18,7 @@ public class scr_IA_4_1 : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        IAbase = GetComponent<scr_IA_base>();
+        enemyBase = GetComponent<EnemyBase>();
 
         if(!Sup)
         {
@@ -108,7 +108,7 @@ public class scr_IA_4_1 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!IAbase.Recover)
+        if(!enemyBase.Recover)
         {
             rb.velocity = dir;
         }
