@@ -466,7 +466,7 @@ MonoBehaviour:
   attackRangeD: 2.6
   atkDamage: 50
   attackInterval: 0.25
-  recoilForce: {x: 12, y: 5}
+  recoilForce: {x: 15, y: 40}
   attacking: 0
   show: 1
 --- !u!114 &3707622229426296116
