@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
 
     private bool hasLantern = false, lanternIsCharged = false;
 
-    private bool skill_Impact, skill_Walljump, skill_WaterBubble, skill_DoubleJump;
+    private bool skill_Impact = true, skill_Walljump = true, skill_WaterBubble = true, skill_DoubleJump = true;
 
     private int gravityChange = 1;
 

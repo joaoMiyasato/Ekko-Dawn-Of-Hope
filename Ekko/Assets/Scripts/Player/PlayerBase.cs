@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerBase : MonoBehaviour
 {
     private int maxLife = 500, curLife;
-    private int maxEnergy = 300, curEnergy;
+    private int maxEnergy = 3000, curEnergy = 3000;
     private int powerPoints = 10000;
     private int energyStones = 0;
     private bool damageTrigger = false;
@@ -176,6 +176,7 @@ public class PlayerBase : MonoBehaviour
 
 #endregion
 
+#region ADD REGION
     public void addPowerPoints(int add)
     {
         this.powerPoints += add;
@@ -201,6 +202,7 @@ public class PlayerBase : MonoBehaviour
         this.curEnergy += add;
     }
 
+#endregion
     private void OnTriggerEnter2D(Collider2D other)
     {
         Physics2D.queriesStartInColliders = false;

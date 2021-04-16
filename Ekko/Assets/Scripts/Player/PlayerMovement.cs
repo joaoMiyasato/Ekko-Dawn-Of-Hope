@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 ////////////////////////// MOVIMENTAÇÃO //////////////////////////////////////////
-    public float SpeedFix = 13f;
-    public float curSpeed, maxDropdownSpd;
+    public float SpeedFix = 18f;
+    public float curSpeed, maxDropdownSpd =-35;
     private float inDropdownMaxSpd;
     public float xtraSpeed = 23f;
     public bool xtraspeed = false;
@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public PhysicsMaterial2D slippery;
     public PhysicsMaterial2D normal;
 ///////////////////////// JUMP ///////////////////////////////////////////
-    public float jumpForce = 8.5f;
+    public float jumpForce = 13f;
     public float jumpTime = 0.25f;
     public float jumpTimeCounter;
     private float jumpCount;

@@ -30,6 +30,36 @@ Transform:
   m_Father: {fileID: 6798884638928973405}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1012505244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1012505245}
+  m_Layer: 9
+  m_Name: PhantomPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1012505245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012505244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.741, y: 1.277, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6798884638928973405}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &412750077609846155
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4433173178570056953}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.43, z: 0}
+  m_LocalPosition: {x: 0.03, y: 1.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6798884638928973405}
@@ -289,7 +319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4433173178790639453}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.667, z: 0}
+  m_LocalPosition: {x: 0, y: -2.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6798884638928973405}
@@ -330,7 +360,7 @@ Transform:
   m_GameObject: {fileID: 4433173179665132565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7, y: 1.7, z: 1}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1}
   m_Children:
   - {fileID: 6798884638928973405}
   - {fileID: 5888695085555498118}
@@ -361,9 +391,9 @@ MonoBehaviour:
   inventorySyntesis: {fileID: 11400000, guid: dba15bf1ca7406d4a97cb6b01930af4a, type: 2}
   inventoryEnemy: {fileID: 11400000, guid: 80ddd383ee9ecc942bec64dbffc8c4b3, type: 2}
   chests: {fileID: 11400000, guid: bd508741748adb74aa0276bc9976c801, type: 2}
-  chestOpen: 
+  chestOpen: 00000000
   destructableWall: {fileID: 11400000, guid: 0d58c863fe9190342966c82186accabd, type: 2}
-  destructableWallOpen: 
+  destructableWallOpen: 000000000000000000000000000000000000
 --- !u!114 &4822896901339376938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,16 +419,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57a6e8038859f084ea148b0a9c8ba52a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedFix: 13
+  SpeedFix: 18
   curSpeed: 0
-  maxDropdownSpd: 20
-  xtraSpeed: 23
+  maxDropdownSpd: -35
+  xtraSpeed: 27
   xtraspeed: 0
-  Recover: {x: 0, y: 0}
+  Recover: {x: 7, y: 2}
   MoveInput: 0
   slippery: {fileID: 6200000, guid: 90f8ae1379a42d640a10de437c7a17eb, type: 2}
   normal: {fileID: 6200000, guid: a44a12086eb17b54cbde5b62292aa644, type: 2}
-  jumpForce: 8.5
+  jumpForce: 13
   jumpTime: 0.25
   jumpTimeCounter: 0
   isJumping: 0
@@ -408,7 +438,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8448
-  checkRadius: 0.4
+  checkRadius: 0.45
   isGrounded: 0
   facingRight: 1
   show: 1
@@ -429,14 +459,14 @@ MonoBehaviour:
   VPointD: {fileID: 4433173178790639458}
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
-  attackRangeH2: 4.02
-  attackRangeH: 6.18
-  attackRangeU: 1.71
-  attackRangeD: 1.8
+    m_Bits: 15360
+  attackRangeH2: 5.03
+  attackRangeH: 7.06
+  attackRangeU: 2.6
+  attackRangeD: 2.6
   atkDamage: 50
   attackInterval: 0.25
-  recoilForce: {x: 0, y: 0}
+  recoilForce: {x: 12, y: 5}
   attacking: 0
   show: 1
 --- !u!114 &3707622229426296116
@@ -454,23 +484,23 @@ MonoBehaviour:
   healing: 0
   impactPosition: {fileID: 329166571}
   GImpact: 0
-  impactRange: 3.06
-  impactDamage: 54
+  impactRange: 6.89
+  impactDamage: 100
   impactStage: 0
   impactTrigger: 0
   destroyGround: 0
-  wallrange: 1.19
-  slideSpeed: 4
+  wallrange: 1.1
+  slideSpeed: -7
   sliding: 0
   wallJumping: 0
-  wallJump: {x: 10, y: 10}
+  wallJump: {x: 35, y: 30}
   Rside: 0
   onWater: 0
   diving: 0
   floating: 0
   rotSpd: 2
   inWaterBubble: 0
-  maxPower: 25
+  maxPower: 50
   cancelBubble: 0
   theBubble: {fileID: 4781323520299654610}
   normal: {fileID: 9093551006867644149}
@@ -502,7 +532,7 @@ Rigidbody2D:
   m_Mass: 50
   m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 10
+  m_GravityScale: 18
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -619,7 +649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4433173179985968767}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.56, y: -0.09, z: 0}
+  m_LocalPosition: {x: 2.44, y: -0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6798884638928973405}
@@ -820,6 +850,7 @@ Transform:
   - {fileID: 4433173178742705864}
   - {fileID: 4433173178717743415}
   - {fileID: 329166571}
+  - {fileID: 1012505245}
   m_Father: {fileID: 4433173179665132572}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

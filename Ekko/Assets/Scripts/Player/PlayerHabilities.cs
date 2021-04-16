@@ -135,51 +135,54 @@ public class PlayerHabilities : MonoBehaviour
         RaycastHit2D hitD = Physics2D.Raycast(transform.position,Vector2.right,wallrange);
         RaycastHit2D hitL = Physics2D.Raycast(transform.position,Vector2.left,wallrange);
 
-        if( hitD.collider != null)
+        if(!wallJumping)
         {
-            Rside = true;
-            if(Input.GetKey(KeyCode.RightArrow) && !PlayerManager.instance.playerBase.getCantAction())
+            if( hitD.collider != null)
             {
-                if( !PlayerManager.instance.playerMovement.isGrounded && hitD.collider.tag == "Wall" ||
-                    !PlayerManager.instance.playerMovement.isGrounded && hitD.collider.tag == "InteractableWall" ||
-                    !PlayerManager.instance.playerMovement.isGrounded && hitD.collider.tag == "Ground")
+                Rside = true;
+                if(Input.GetKey(KeyCode.RightArrow) && !PlayerManager.instance.playerBase.getCantAction())
                 {
-                    sliding = true;
-                    if(PlayerManager.instance.rb.velocity.y < slideSpeed)
+                    if( !PlayerManager.instance.playerMovement.isGrounded && hitD.collider.tag == "Wall" ||
+                        !PlayerManager.instance.playerMovement.isGrounded && hitD.collider.tag == "InteractableWall" ||
+                        !PlayerManager.instance.playerMovement.isGrounded && hitD.collider.tag == "Ground")
                     {
-                        PlayerManager.instance.rb.velocity = new Vector2(0,slideSpeed);
+                        sliding = true;
+                        if(PlayerManager.instance.rb.velocity.y < slideSpeed)
+                        {
+                            PlayerManager.instance.rb.velocity = new Vector2(0,slideSpeed);
+                        }
+                    }
+                    else
+                    {
+                        StartCoroutine(slidefalse());
                     }
                 }
-                else
-                {
-                    StartCoroutine(slidefalse());
-                }
             }
-        }
-        else if(hitL.collider != null && Input.GetKey(KeyCode.LeftArrow))
-        {
-            Rside = false;
-            if(Input.GetKey(KeyCode.LeftArrow))
+            else if(hitL.collider != null && Input.GetKey(KeyCode.LeftArrow))
             {
-                if( !PlayerManager.instance.playerMovement.isGrounded && hitL.collider.tag == "Wall" ||
-                    !PlayerManager.instance.playerMovement.isGrounded && hitL.collider.tag == "InteractableWall" ||
-                    !PlayerManager.instance.playerMovement.isGrounded && hitL.collider.tag == "Ground")
+                Rside = false;
+                if(Input.GetKey(KeyCode.LeftArrow))
                 {
-                    sliding = true;
-                    if(PlayerManager.instance.rb.velocity.y < slideSpeed)
+                    if( !PlayerManager.instance.playerMovement.isGrounded && hitL.collider.tag == "Wall" ||
+                        !PlayerManager.instance.playerMovement.isGrounded && hitL.collider.tag == "InteractableWall" ||
+                        !PlayerManager.instance.playerMovement.isGrounded && hitL.collider.tag == "Ground")
                     {
-                        PlayerManager.instance.rb.velocity = new Vector2(0,slideSpeed);
+                        sliding = true;
+                        if(PlayerManager.instance.rb.velocity.y < slideSpeed)
+                        {
+                            PlayerManager.instance.rb.velocity = new Vector2(0,slideSpeed);
+                        }
+                    }
+                    else
+                    {
+                        StartCoroutine(slidefalse());
                     }
                 }
-                else
-                {
-                    StartCoroutine(slidefalse());
-                }
             }
-        }
-        else
-        {
-            StartCoroutine(slidefalse());
+            else
+            {
+                StartCoroutine(slidefalse());
+            }
         }
 
     }
