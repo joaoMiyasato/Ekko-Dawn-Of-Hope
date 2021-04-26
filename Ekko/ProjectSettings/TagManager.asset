@@ -55,6 +55,30 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: 
+  - name: back_3
+    uniqueID: 1776668665
+    locked: 0
+  - name: back_2
+    uniqueID: 2289315853
+    locked: 0
+  - name: back_1
+    uniqueID: 2655328671
+    locked: 0
+  - name: player
+    uniqueID: 1361200849
+    locked: 0
+  - name: front_1
+    uniqueID: 608182993
+    locked: 0
+  - name: ground_1
     uniqueID: 737856295
+    locked: 0
+  - name: wall_1
+    uniqueID: 3295855737
+    locked: 0
+  - name: ground_2
+    uniqueID: 1645724577
+    locked: 0
+  - name: wall_2
+    uniqueID: 3754601353
     locked: 0
