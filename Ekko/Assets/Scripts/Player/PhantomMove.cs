@@ -33,11 +33,11 @@ public class PhantomMove : MonoBehaviour
         }
         if(ycurSpd > Yspeed)
         {
-            ycurSpd += Time.fixedDeltaTime*4;
+            ycurSpd += Time.fixedDeltaTime*2;
         }
         else if(ycurSpd < Yspeed)
         {
-            ycurSpd -= Time.fixedDeltaTime*4;
+            ycurSpd -= Time.fixedDeltaTime*2;
         }
         dir.y = ycurSpd;
         rb.velocity = dir;
