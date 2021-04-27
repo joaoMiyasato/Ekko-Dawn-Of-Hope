@@ -114,37 +114,48 @@ public class PlayerMovement : MonoBehaviour
         }
 #endregion
 
+    //Flip
         if(!PlayerManager.instance.playerHabilities.inWaterBubble)
         {
-            if(!facingRight && MoveInput > 0 && !PlayerManager.instance.playerHabilities.sliding || facingRight && MoveInput > 0 && PlayerManager.instance.playerHabilities.sliding)
+            if(!facingRight && MoveInput > 0 && !PlayerManager.instance.playerHabilities.sliding 
+            || facingRight && MoveInput > 0 && PlayerManager.instance.playerHabilities.sliding)
             {
                 if(!PlayerManager.instance.playerAttack.attacking)
                 {
                     //Direita
                     if(isGrounded)
                     {
-                        LongerFlip();
+                        PlayerManager.instance.animator.SetBool("Turning", true);
                     }
                     else
                     {
                         InstantFlip();
                     }
                 }
+                // else
+                // {
+                //     InstantFlip();
+                // }
             }
-            else if(facingRight && MoveInput < 0 && !PlayerManager.instance.playerHabilities.sliding || !facingRight && MoveInput < 0 && PlayerManager.instance.playerHabilities.sliding)
+            else if(facingRight && MoveInput < 0 && !PlayerManager.instance.playerHabilities.sliding 
+                || !facingRight && MoveInput < 0 && PlayerManager.instance.playerHabilities.sliding)
             {
                 if(!PlayerManager.instance.playerAttack.attacking)
                 {
                     //Esquerda
                     if(isGrounded)
                     {
-                        LongerFlip();
+                        PlayerManager.instance.animator.SetBool("Turning", true);
                     }
                     else
                     {
                         InstantFlip();
                     }
                 }
+                // else
+                // {
+                //     InstantFlip();
+                // }
             }
 
 #region Jump
@@ -419,10 +430,6 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = Scaler;
     }
 
-    private void LongerFlip()
-    {
-        PlayerManager.instance.animator.SetBool("Turning", true);
-    }
     public void EndTurning()
     {
         PlayerManager.instance.animator.SetBool("Turning", false);

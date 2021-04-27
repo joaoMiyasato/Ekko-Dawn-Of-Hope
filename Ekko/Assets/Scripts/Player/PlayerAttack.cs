@@ -30,6 +30,7 @@ public class PlayerAttack : MonoBehaviour
         {
             attacking = true;
             PlayerManager.instance.animator.SetBool("IsAttacking", true);
+            PlayerManager.instance.animator.SetBool("Turning", false);
             if(!PlayerManager.instance.playerMovement.isGrounded)
             {
                 PlayerManager.instance.animator.ResetTrigger("Jump");
