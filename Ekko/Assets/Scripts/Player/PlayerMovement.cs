@@ -458,8 +458,13 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+        if(headPos == null)
+        {
+            return;
+        }
         Gizmos.DrawWireSphere(feetPos1.position, checkRadius);
         Gizmos.DrawWireSphere(feetPos2.position, checkRadius);
+        Gizmos.DrawWireSphere(headPos.position, checkRadius);
         }
     }
 }

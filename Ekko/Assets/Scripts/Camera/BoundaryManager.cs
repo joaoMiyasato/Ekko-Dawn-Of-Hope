@@ -5,13 +5,14 @@ using UnityEngine;
 public class BoundaryManager : MonoBehaviour
 {
     private BoxCollider2D managerBox;
+    [SerializeField]
     private Transform player;
     public GameObject boundary;
 
     private void Start()
     {
         managerBox = GetComponent<BoxCollider2D>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        // player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
     private void Update()
     {
