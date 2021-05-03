@@ -42,6 +42,22 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
         {
             if(!GetComponentInChildren<EnemyActionArea>().getTakeAction() && GetComponentInChildren<EnemyAttentionArea>().getGotAttention() && !running)
             {
+                if(transform.position.x > player.position.x)
+                {
+                    if(facingRight)
+                    {
+                        change = true;
+                        flip();
+                    }
+                }
+                else if(transform.position.x <= player.position.x)
+                {
+                    if(!facingRight)
+                    {
+                        change = true;
+                        flip();
+                    }
+                }
                 //Animação do bicho com medo
                 rb.velocity = Vector2.zero;
             }
@@ -50,7 +66,6 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
                 if(groundedR && transform.position.x > player.position.x
                 || groundedL && transform.position.x < player.position.x)
                 {
-                    // Flip();
                     run();
                 }
                 else if(!groundedR && transform.position.x > player.position.x
@@ -103,7 +118,7 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
             {
                 curCanTurn = canTurn;
                 turn = Random.Range(2f, 4f);
-                Flip();
+                flip();
                 rb.velocity = new Vector2(patrolSpeed, rb.velocity.y);
             }
         }
@@ -112,6 +127,22 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
     private void run()
     {
         stop = true;
+        if(transform.position.x >= player.position.x)
+        {
+            if(!facingRight)
+            {
+                change = true;
+                flip();
+            }
+        }
+        else if(transform.position.x < player.position.x)
+        {
+            if(facingRight)
+            {
+                change = true;
+                flip();
+            }
+        }
         if(player.position.x <= this.transform.position.x)
         {
             runAwaySpeed = Mathf.Abs(runAwaySpeed);
@@ -192,7 +223,7 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
         }
     }
     
-    private void Flip()
+    private void flip()
     {
         if(change)
         {
@@ -204,7 +235,6 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
             change = false;
         }
     }
-    
     private void stopMoving()
     {
         if(stop)

@@ -6,21 +6,43 @@ public class EnemyActionArea : MonoBehaviour
 {
     private float time;
     private bool takeAction, inBox;
+    [SerializeField]
+    private bool fast;
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.tag == "Player")
+        if(!fast)
         {
-            takeAction = true;
-            inBox = true;
+            if(other.tag == "Player")
+            {
+                takeAction = true;
+                inBox = true;
+            }
+        }
+        else
+        {
+            if(other.tag == "Player")
+            {
+                takeAction = true;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.tag == "Player")
+        if(!fast)
         {
-            inBox = false;
-            StartCoroutine(lostAction());
+            if(other.tag == "Player")
+            {
+                inBox = false;
+                StartCoroutine(lostAction());
+            }
+        }
+        else
+        {
+            if(other.tag == "Player")
+            {
+                takeAction = false;
+            }
         }
     }
     private IEnumerator lostAction()

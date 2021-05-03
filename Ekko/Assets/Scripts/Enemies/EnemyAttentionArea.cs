@@ -6,21 +6,43 @@ public class EnemyAttentionArea : MonoBehaviour
 {
     private float time;
     private bool gotAttention, inBox;
+    [SerializeField]
+    private bool fast;
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.tag == "Player")
+        if(!fast)
         {
-            gotAttention = true;
-            inBox = true;
+            if(other.tag == "Player")
+            {
+                gotAttention = true;
+                inBox = true;
+            }
+        }
+        else
+        {
+            if(other.tag == "Player")
+            {
+                gotAttention = true;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.tag == "Player")
+        if(!fast)
         {
-            inBox = false;
-            StartCoroutine(lostAttention());
+            if(other.tag == "Player")
+            {
+                inBox = false;
+                StartCoroutine(lostAttention());
+            }
+        }
+        else
+        {
+            if(other.tag == "Player")
+            {
+                gotAttention = false;
+            }
         }
     }
     private IEnumerator lostAttention()
