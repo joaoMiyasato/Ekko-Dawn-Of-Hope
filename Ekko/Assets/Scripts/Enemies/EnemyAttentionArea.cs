@@ -5,12 +5,13 @@ using UnityEngine;
 public class EnemyAttentionArea : MonoBehaviour
 {
     private float time;
-    private bool gotAttention;
+    private bool gotAttention, inBox;
     private void OnTriggerStay2D(Collider2D other)
     {
         if(other.tag == "Player")
         {
             gotAttention = true;
+            inBox = true;
         }
     }
 
@@ -18,6 +19,7 @@ public class EnemyAttentionArea : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            inBox = false;
             StartCoroutine(lostAttention());
         }
     }
@@ -25,7 +27,8 @@ public class EnemyAttentionArea : MonoBehaviour
     {
         time = Random.Range(0.5f, 1.2f);
         yield return new WaitForSeconds(time);
-        gotAttention = false;
+        if(!inBox)
+            gotAttention = false;
     }
 
     public void setGotAttention(bool gotAttention)

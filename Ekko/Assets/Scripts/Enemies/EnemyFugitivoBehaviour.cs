@@ -30,33 +30,31 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
         if(running)
         {
             tt += Time.deltaTime;
-            if(tt > 1f)
+            GetComponentInChildren<EnemyActionArea>().setTakeAction(true);
+            if(tt > 3.5f)
             {
-                // if(groundedR && groundedL)
-                // {
-                    run();
-                // }
-            }
-            else if(tt > 4f)
-            {
+                GetComponentInChildren<EnemyActionArea>().setTakeAction(false);
                 running = false;
                 tt = 0;
             }
         }
-        if(!GetComponentInChildren<EnemyVision>().getIsHidding())
+        if(!GetComponentInChildren<EnemyVision>().getIsHidding() || running)
         {
             if(!GetComponentInChildren<EnemyActionArea>().getTakeAction() && GetComponentInChildren<EnemyAttentionArea>().getGotAttention() && !running)
-            {       
+            {
                 //Animação do bicho com medo
+                rb.velocity = Vector2.zero;
             }
             else if(GetComponentInChildren<EnemyActionArea>().getTakeAction())
-            {      
-                if(groundedR && groundedL)
+            {
+                if(groundedR && transform.position.x > player.position.x
+                || groundedL && transform.position.x < player.position.x)
                 {
                     // Flip();
                     run();
                 }
-                else if(!groundedR || !groundedL)
+                else if(!groundedR && transform.position.x > player.position.x
+                    || !groundedL && transform.position.x < player.position.x)
                 {
                     stopMoving();
                     suicideJump();
@@ -69,8 +67,8 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
                 justGo = false;
             }
         }
-        if(!GetComponentInChildren<EnemyActionArea>().getTakeAction() && !GetComponentInChildren<EnemyAttentionArea>().getGotAttention() 
-        || GetComponentInChildren<EnemyVision>().getIsHidding())
+        if(!GetComponentInChildren<EnemyActionArea>().getTakeAction() && !GetComponentInChildren<EnemyAttentionArea>().getGotAttention() && !running
+        || GetComponentInChildren<EnemyVision>().getIsHidding() && !running)
         {
             patrol();
         }
@@ -130,26 +128,26 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
     private void suicideJump()
     {
         t += Time.deltaTime;
-        if(t > 1.5f) justGo = true;
-        if(justGo && t < 1.6f && t > 1.5f && onGround)
+        if(t > 0.8f) justGo = true;
+        if(justGo && t < 1f && t > 0.8f && onGround)
         {
             if((this.transform.position.x - player.position.x) < 0)
             {
-                go = new Vector2(-12f, 25f);
+                go = new Vector2(-8f, 22f);
             }
             else if((this.transform.position.x - player.position.x) >= 0)
             {
-                go = new Vector2(12f, 25f);
+                go = new Vector2(8f, 22f);
             }
-            if(GetComponentInChildren<EnemyActionArea>().getTakeAction() && !GetComponentInChildren<EnemyVision>().getIsHidding())
+            if(GetComponentInChildren<EnemyActionArea>().getTakeAction())
             {
-                rb.AddForce(go, ForceMode2D.Impulse);
+                rb.velocity = go;
                 running = true;
             }
         }
     }
 
-    private float dyingHeight = 0.6f, curAirTime;
+    private float dyingHeight = 0.5f, curAirTime;
     private bool dieOnCollision = false;
     private void dieFromFalling()
     {
@@ -172,6 +170,8 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
                 Destroy(gameObject);
             }
             curAirTime = 0;
+            t = 0;
+            justGo = false;
         }
     }
     

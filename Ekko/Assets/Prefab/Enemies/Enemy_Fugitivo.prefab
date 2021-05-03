@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3287949}
   - component: {fileID: 3287951}
   - component: {fileID: 6648607995835501557}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: AttentionBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 413680770}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1082038491}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: CheckRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1839245230}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: CheckLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,8 +265,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4493d37aff5e4704d96ef5c6f9ef5c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  runAwaySpeed: 18
   radius: 0.3
+  patrolSpeed: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256

@@ -14,7 +14,7 @@ public class EnemyVision : MonoBehaviour
 
     void Update()
     {
-        transform.LookAt(GameObject.Find("Player (TestObject)").transform);
+        transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
     }
     private void FixedUpdate()
     {

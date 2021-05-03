@@ -5,12 +5,13 @@ using UnityEngine;
 public class EnemyActionArea : MonoBehaviour
 {
     private float time;
-    private bool takeAction;
+    private bool takeAction, inBox;
     private void OnTriggerStay2D(Collider2D other)
     {
         if(other.tag == "Player")
         {
             takeAction = true;
+            inBox = true;
         }
     }
 
@@ -18,15 +19,16 @@ public class EnemyActionArea : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            inBox = false;
             StartCoroutine(lostAction());
         }
     }
-
     private IEnumerator lostAction()
     {
         time = Random.Range(0.5f, 1.2f);
         yield return new WaitForSeconds(time);
-        takeAction = false;
+        if(!inBox)
+            takeAction = false;
     }
 
     public void setTakeAction(bool takeAction)
