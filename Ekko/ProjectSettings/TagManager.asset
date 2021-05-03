@@ -85,3 +85,6 @@ TagManager:
   - name: front_2
     uniqueID: 3754601353
     locked: 0
+  - name: front_3
+    uniqueID: 2528119953
+    locked: 0
