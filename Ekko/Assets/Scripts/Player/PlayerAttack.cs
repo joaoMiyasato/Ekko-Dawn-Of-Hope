@@ -130,7 +130,7 @@ public class PlayerAttack : MonoBehaviour
         }
         curInterval = 0;
         // Collider2D[] hitEnemies1 = Physics2D.OverlapCircleAll(HPoint.position, attackRangeH, enemyLayers);
-        Collider2D[] hitEnemies1 = Physics2D.OverlapBoxAll(HPoint.position, new Vector2(attackRangeH, attackRangeH2), 0,enemyLayers);
+        Collider2D[] hitEnemies1 = Physics2D.OverlapBoxAll(HPoint.position, new Vector2(attackRangeH, attackRangeH2), 0, enemyLayers);
         foreach(Collider2D hit in hitEnemies1)
         {
             hitted = true;

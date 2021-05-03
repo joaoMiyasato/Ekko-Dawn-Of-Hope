@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-    public bool bossActivated = false;
-    public int maxHealth = 10;
-    public int Damage = 1;
-    public int curHealth;
-    public bool Recover;
+    [SerializeField]
+    private int maxHealth = 10;
+    [SerializeField]
+    private int damage = 1;
+    private int curHealth;
+    private bool recover;
     private float recovering = 0.35f;
-    public bool Back = false;
-    public GameObject bossArea;
+    private bool back = false;
     void Start()
     {
         curHealth = maxHealth;
@@ -19,22 +19,18 @@ public class EnemyBase : MonoBehaviour
 
     void Update()
     {
-        if(Recover == true)
+        if(recover == true)
         {
             recovering -= Time.deltaTime;
             if(recovering < 0)
             {
-                Recover = false;
+                recover = false;
                 recovering = 0.35f;
             }
 
         }
         if(curHealth <= 0)
         {
-            if(this.gameObject.tag == "Boss")
-            {
-                bossArea.GetComponent<scr_bossArea>().bossDefeated = true;
-            }
             Die();
         }
     }
@@ -42,8 +38,8 @@ public class EnemyBase : MonoBehaviour
     public void takeDamage(int damage)
     {
         curHealth -= damage;
-        Back = true;
-        Recover = true;
+        back = true;
+        recover = true;
     }
 
     void Die()
@@ -51,4 +47,26 @@ public class EnemyBase : MonoBehaviour
         CameraControl.instance.StartShake(0.2f,0.1f,2f);
         Destroy(gameObject);
     }
+
+    public void setBack(bool back)
+    {
+        this.back = back;
+    }
+
+    public int getDamage()
+    {
+        return this.damage;
+    }
+
+    public bool getBack()
+    {
+        return this.back;
+    }
+
+    public bool getRecover()
+    {
+        return this.recover;
+    }
+
+    
 }

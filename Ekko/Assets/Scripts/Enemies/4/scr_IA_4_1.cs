@@ -108,7 +108,7 @@ public class scr_IA_4_1 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!enemyBase.Recover)
+        if(!enemyBase.getRecover())
         {
             rb.velocity = dir;
         }
