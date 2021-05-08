@@ -4668,7 +4668,7 @@ PrefabInstance:
     - target: {fileID: 4433173179665132565, guid: a4bba9b51f71408408598dca95d7f738,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4433173179665132572, guid: a4bba9b51f71408408598dca95d7f738,
         type: 3}
@@ -66994,7 +66994,7 @@ PrefabInstance:
     - target: {fileID: 4433173179665132565, guid: a4bba9b51f71408408598dca95d7f738,
         type: 3}
       propertyPath: m_Name
-      value: Enemy_Ataque
+      value: Enemy_Ataque (DESATIVAR)
       objectReference: {fileID: 0}
     - target: {fileID: 4433173179665132565, guid: a4bba9b51f71408408598dca95d7f738,
         type: 3}
@@ -67004,7 +67004,7 @@ PrefabInstance:
     - target: {fileID: 4433173179665132565, guid: a4bba9b51f71408408598dca95d7f738,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4433173179665132565, guid: a4bba9b51f71408408598dca95d7f738,
         type: 3}
