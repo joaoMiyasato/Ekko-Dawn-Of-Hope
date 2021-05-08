@@ -20916,6 +20916,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 117139894}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &440059486 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4433173179665132572, guid: a4bba9b51f71408408598dca95d7f738,
+    type: 3}
+  m_PrefabInstance: {fileID: 117139894}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &440059491 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 692845548292622793, guid: a4bba9b51f71408408598dca95d7f738,
@@ -24216,7 +24222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c1effeecd6c374985000d0573c40f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1107687341}
+  player: {fileID: 440059486}
   maskx: 0
   masky: 0
   maskz: -50
@@ -49370,12 +49376,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1663306949064985417, guid: 5fb4de1167c79da429827fc220a2178f,
     type: 3}
   m_PrefabInstance: {fileID: 1634999561}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1107687341 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4433173179665132572, guid: a4bba9b51f71408408598dca95d7f738,
-    type: 3}
-  m_PrefabInstance: {fileID: 1520597922}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1108406214
 PrefabInstance:
@@ -81337,7 +81337,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1107687341}
+      objectReference: {fileID: 440059486}
     - target: {fileID: 3192604756202454004, guid: 4db186a134958ce47aba3b5651763643,
         type: 3}
       propertyPath: m_Color.b
@@ -81366,7 +81366,7 @@ PrefabInstance:
     - target: {fileID: 4237848054839375341, guid: 4db186a134958ce47aba3b5651763643,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1314.424
+      value: 1654.9911
       objectReference: {fileID: 0}
     - target: {fileID: 4237848054839375341, guid: 4db186a134958ce47aba3b5651763643,
         type: 3}
@@ -81376,7 +81376,7 @@ PrefabInstance:
     - target: {fileID: 4237848054839375341, guid: 4db186a134958ce47aba3b5651763643,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1022.2
+      value: 1076.6917
       objectReference: {fileID: 0}
     - target: {fileID: 4237848054839375341, guid: 4db186a134958ce47aba3b5651763643,
         type: 3}
