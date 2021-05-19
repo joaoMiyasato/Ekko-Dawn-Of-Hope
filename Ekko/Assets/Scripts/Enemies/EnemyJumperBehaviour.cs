@@ -27,11 +27,11 @@ public class EnemyJumperBehaviour : MonoBehaviour
     {
         if(!GetComponentInChildren<EnemyVision>().getIsHidding())
         {
-            if(!GetComponentInChildren<EnemyActionArea>().getTakeAction() && GetComponentInChildren<EnemyAttentionArea>().getGotAttention())
+            if(!GetComponentInChildren<EnemyActionArea>().getTakeAction() && GetComponentInChildren<EnemyAttentionArea>().getGotAttention() && !isJumping)
             {
-                chasing();
+                inChase = true;
             }
-            else if(GetComponentInChildren<EnemyActionArea>().getTakeAction())
+            else if(GetComponentInChildren<EnemyActionArea>().getTakeAction() || isJumping)
             {
                 jumpAttack();
             }
@@ -40,6 +40,10 @@ public class EnemyJumperBehaviour : MonoBehaviour
         || GetComponentInChildren<EnemyVision>().getIsHidding())
         {
             patrol();
+        }
+        if(inChase)
+        {
+            chasing();
         }
     }
     
@@ -80,6 +84,7 @@ public class EnemyJumperBehaviour : MonoBehaviour
         }
     }
 
+    private bool inChase;
     private void chasing()
     {
         if(transform.position.x <= player.position.x)
@@ -108,8 +113,8 @@ public class EnemyJumperBehaviour : MonoBehaviour
         }
     }
 
-    float waitTime = 2f;
-    bool waiting = true;
+    float waitTime = 2.7f;
+    bool waiting = true, isJumping;
     private void jumpAttack()
     {
         if(onGround && !waiting)
@@ -129,6 +134,15 @@ public class EnemyJumperBehaviour : MonoBehaviour
         if(waiting)
         {
             waitTime += Time.deltaTime;
+            if(waitTime > 0.8f && waitTime < 2.2f && !isJumping)
+            {
+                inChase = true;
+            }
+            else if(waitTime >= 2.2f)
+            {
+                inChase = false;
+                isJumping = true;
+            }
             if(waitTime > 3f)
             {
                 waiting = false;
@@ -150,6 +164,14 @@ public class EnemyJumperBehaviour : MonoBehaviour
                     flip();
                 }
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.collider.tag == "Ground")
+        {
+            isJumping = false;
         }
     }
 
