@@ -27,6 +27,12 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
     float tt;
     void Update()
     {
+        if(!GetComponentInChildren<EnemyActionArea>().getTakeAction() && !GetComponentInChildren<EnemyAttentionArea>().getGotAttention() && !running
+        || GetComponentInChildren<EnemyVision>().getIsHidding() && !running)
+        {
+            patrol();
+        }
+        
         if(running)
         {
             tt += Time.deltaTime;
@@ -82,11 +88,7 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
                 justGo = false;
             }
         }
-        if(!GetComponentInChildren<EnemyActionArea>().getTakeAction() && !GetComponentInChildren<EnemyAttentionArea>().getGotAttention() && !running
-        || GetComponentInChildren<EnemyVision>().getIsHidding() && !running)
-        {
-            patrol();
-        }
+        
         dieFromFalling();
     }
     private void FixedUpdate()

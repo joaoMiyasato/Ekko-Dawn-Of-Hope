@@ -25,6 +25,12 @@ public class EnemyJumperBehaviour : MonoBehaviour
 
     void Update()
     {
+        if(!GetComponentInChildren<EnemyActionArea>().getTakeAction() && !GetComponentInChildren<EnemyAttentionArea>().getGotAttention()
+        || GetComponentInChildren<EnemyVision>().getIsHidding())
+        {
+            patrol();
+        }
+
         if(!GetComponentInChildren<EnemyVision>().getIsHidding())
         {
             if(!GetComponentInChildren<EnemyActionArea>().getTakeAction() && GetComponentInChildren<EnemyAttentionArea>().getGotAttention() && !isJumping)
@@ -36,11 +42,7 @@ public class EnemyJumperBehaviour : MonoBehaviour
                 jumpAttack();
             }
         }
-        if(!GetComponentInChildren<EnemyActionArea>().getTakeAction() && !GetComponentInChildren<EnemyAttentionArea>().getGotAttention()
-        || GetComponentInChildren<EnemyVision>().getIsHidding())
-        {
-            patrol();
-        }
+        
         if(inChase)
         {
             chasing();
