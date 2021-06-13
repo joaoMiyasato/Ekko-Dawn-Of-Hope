@@ -19,11 +19,11 @@ public class Transições : MonoBehaviour
         {
             if(PlayerManager.instance.rb.velocity.x > 0)
             {
-                PlayerManager.instance.rb.velocity = new Vector2(PlayerManager.instance.playerMovement.SpeedFix*2/3, PlayerManager.instance.rb.velocity.y);
+                PlayerManager.instance.rb.velocity = new Vector2(PlayerManager.instance.playerMovement.speedNoAlteration*2/3, PlayerManager.instance.rb.velocity.y);
             }
             else if(PlayerManager.instance.rb.velocity.x < 0)
             {
-                PlayerManager.instance.rb.velocity = new Vector2(-PlayerManager.instance.playerMovement.SpeedFix*2/3, PlayerManager.instance.rb.velocity.y);
+                PlayerManager.instance.rb.velocity = new Vector2(-PlayerManager.instance.playerMovement.speedNoAlteration*2/3, PlayerManager.instance.rb.velocity.y);
             }
         }
         }
@@ -40,7 +40,7 @@ public class Transições : MonoBehaviour
             {
                 if(PlayerManager.instance.playerMovement.facingRight)
                 {
-                    PlayerManager.instance.rb.velocity = new Vector2(PlayerManager.instance.playerMovement.SpeedFix/3+xForce, PlayerManager.instance.rb.velocity.y);
+                    PlayerManager.instance.rb.velocity = new Vector2(PlayerManager.instance.playerMovement.speedNoAlteration/3+xForce, PlayerManager.instance.rb.velocity.y);
                     if(GameManager.instance.YtransitionForce)
                     {
                         PlayerManager.instance.rb.velocity = new Vector2(PlayerManager.instance.rb.velocity.x, yForce);
@@ -48,7 +48,7 @@ public class Transições : MonoBehaviour
                 }
                 else if(!PlayerManager.instance.playerMovement.facingRight)
                 {
-                    PlayerManager.instance.rb.velocity = new Vector2(-PlayerManager.instance.playerMovement.SpeedFix/3-xForce, PlayerManager.instance.rb.velocity.y);
+                    PlayerManager.instance.rb.velocity = new Vector2(-PlayerManager.instance.playerMovement.speedNoAlteration/3-xForce, PlayerManager.instance.rb.velocity.y);
                     if(GameManager.instance.YtransitionForce)
                     {
                         PlayerManager.instance.rb.velocity = new Vector2(PlayerManager.instance.rb.velocity.x, yForce);

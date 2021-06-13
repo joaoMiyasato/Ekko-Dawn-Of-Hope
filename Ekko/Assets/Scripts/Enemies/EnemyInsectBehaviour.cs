@@ -20,6 +20,7 @@ public class EnemyInsectBehaviour : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         if(isOnRightWall)
         {
@@ -37,6 +38,7 @@ public class EnemyInsectBehaviour : MonoBehaviour
         }
         else if(isOnCeiling)
         {
+            facingRight = false;
             transform.rotation = Quaternion.Euler(0,0, 180);
             newGravity = Vector2.up;
         }
@@ -45,25 +47,42 @@ public class EnemyInsectBehaviour : MonoBehaviour
     void Update()
     {
         if(GetComponentInChildren<EnemyVision>().getIsHidding()
-        || !GetComponentInChildren<EnemyAttentionArea>().getGotAttention() && !GetComponentInChildren<EnemyActionArea>().getTakeAction())
+        || curFireRate > 0.3f && curFireRate < fireRate-0.7f)
         {
             patrol();
         }
 
-        if(GetComponentInChildren<EnemyAttentionArea>().getGotAttention() && !GetComponentInChildren<EnemyActionArea>().getTakeAction())
+        if(GetComponentInChildren<EnemyAttentionArea>().getGotAttention()
+        && curFireRate > 0.2f && curFireRate < fireRate-0.4f)
         {
-            if(transform.position.x >= player.transform.position.x && facingRight)
+            if(!isOnRightWall && !isOnLeftWall)
             {
-                change = true;
-                flip();
+                if(transform.position.x >= player.transform.position.x && facingRight)
+                {
+                    change = true;
+                    flip();
+                }
+                else if(transform.position.x < player.transform.position.x && !facingRight)
+                {
+                    change = true;
+                    flip();
+                }
             }
-            else if(transform.position.x < player.transform.position.x && !facingRight)
+            else
             {
-                change = true;
-                flip();
+                if(transform.position.y >= player.transform.position.y && facingRight)
+                {
+                    change = true;
+                    flip();
+                }
+                else if(transform.position.y < player.transform.position.y && !facingRight)
+                {
+                    change = true;
+                    flip();
+                }
             }
         }
-        else if(GetComponentInChildren<EnemyActionArea>().getTakeAction())
+        if(GetComponentInChildren<EnemyActionArea>().getTakeAction())
         {
             stringShot();
         }
@@ -89,7 +108,14 @@ public class EnemyInsectBehaviour : MonoBehaviour
         && curCanTurn > 0)
         {
             curTurn = turn;
-            rb.velocity = new Vector2(patrolSpeed, rb.velocity.y);
+            if(isOnCeiling || isOnGround)
+            {
+                rb.velocity = new Vector2(patrolSpeed, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(rb.velocity.x, patrolSpeed);
+            }
         }
         else if(groundedR && !groundedL 
             || groundedR && !groundedL 
@@ -107,15 +133,22 @@ public class EnemyInsectBehaviour : MonoBehaviour
                 curCanTurn = canTurn;
                 turn = Random.Range(2f, 4f);
                 flip();
-                rb.velocity = new Vector2(patrolSpeed, rb.velocity.y);
+                if(isOnCeiling || isOnGround)
+                {
+                    rb.velocity = new Vector2(patrolSpeed, rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, patrolSpeed);
+                }
             }
         }
     }
 
-    private float fireRate = 60f, curFireRate = 40f;
+    private float fireRate = 5f, curFireRate = 4.5f;
     private void stringShot()
     {
-        curFireRate++;
+        curFireRate += Time.deltaTime;
         if(curFireRate > fireRate)
         {
             GetComponentInChildren<EnemyProjectileTrigger>().shotTrigger();

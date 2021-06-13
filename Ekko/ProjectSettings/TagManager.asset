@@ -18,6 +18,7 @@ TagManager:
   - Boundary
   - OneWay
   - Water
+  - Projectile
   layers:
   - Default
   - TransparentFX

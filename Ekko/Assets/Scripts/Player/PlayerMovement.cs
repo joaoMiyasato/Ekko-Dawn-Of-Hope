@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 ////////////////////////// MOVIMENTAÇÃO //////////////////////////////////////////
-    public float SpeedFix = 18f;
+    public readonly float speedNoAlteration = 18f;
     public float curSpeed, maxDropdownSpd =-35;
     private float inDropdownMaxSpd;
     public float xtraSpeed = 23f;
@@ -16,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public PhysicsMaterial2D slippery;
     public PhysicsMaterial2D normal;
 ///////////////////////// JUMP ///////////////////////////////////////////
-    public float jumpForce = 13f;
+    public readonly float jumpForceNoAlteration = 13f;
+    public float jumpForce;
     public float jumpTime = 0.25f;
     public float jumpTimeCounter;
     private float jumpCount;
@@ -40,7 +41,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Recover.x *= -1;
 
-        curSpeed = SpeedFix;
+        curSpeed = speedNoAlteration;
+        jumpForce = jumpForceNoAlteration;
     }
 ////////////////////////////////////////////////////////////////////
     void Update()
@@ -114,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
         }
 #endregion
 
+#region Flip
     //Flip
         if(!PlayerManager.instance.playerHabilities.inWaterBubble)
         {
@@ -157,6 +160,7 @@ public class PlayerMovement : MonoBehaviour
                 //     InstantFlip();
                 // }
             }
+#endregion
 
 #region Jump
             if(!PlayerManager.instance.playerBase.getCantJump() && 
@@ -189,6 +193,8 @@ public class PlayerMovement : MonoBehaviour
             }
 #endregion
         }
+
+        debuffSpeedCloser();
     }
 ////////////////////////////////////////////////////////////////////
         private void FixedUpdate() 
@@ -220,6 +226,8 @@ public class PlayerMovement : MonoBehaviour
 #endregion
 
     }
+
+#region Movimentação
 ////////////////////////// MOVIMENTAÇÃO //////////////////////////////////////////
     private void move()
     {
@@ -228,9 +236,9 @@ public class PlayerMovement : MonoBehaviour
         if(xtraspeed)
         {
             curSpeed -= 0.3f;
-            if(curSpeed <= SpeedFix)
+            if(curSpeed <= speedNoAlteration)
             {
-                curSpeed = SpeedFix;
+                curSpeed = speedNoAlteration;
                 xtraspeed = false;
             }
         }
@@ -249,6 +257,9 @@ public class PlayerMovement : MonoBehaviour
             PlayerManager.instance.animator.SetBool("Walking", false);
         }
     }
+#endregion
+
+#region Jump
 ////////////////////////// JUMP //////////////////////////////////////////
     private void jump()
     {
@@ -306,6 +317,40 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.075f);
         jumpCount--;
     }
+#endregion
+
+#region  Debuffs
+////////////////////////////// DEBUFFS ///////////////////////////////////////
+    private float debuffSpeedTimer;
+    private void spdDebuff(float spdAmount, float jumpAmount, float time)
+    {
+        curSpeed = curSpeed - spdAmount;
+        jumpForce = jumpForce - jumpAmount;
+        debuffSpeedTimer = time;
+
+        if(curSpeed < 5f)
+        {
+            curSpeed = 5f;
+        }
+        if(jumpForce < 5f)
+        {
+            jumpForce = 5f;
+        }
+    }
+
+    private void debuffSpeedCloser()
+    {
+        debuffSpeedTimer -= Time.deltaTime;
+        if(debuffSpeedTimer <= 0)
+        {
+            debuffSpeedTimer = 0;
+            curSpeed = speedNoAlteration;
+            jumpForce = jumpForceNoAlteration;
+        }
+    }
+#endregion
+
+#region Colisões
 ///////////////////////////// COLISÕES ///////////////////////////////////////
     private void OnCollisionExit2D(Collision2D other)
     {
@@ -419,7 +464,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other != null)
+        {
+            if(other.tag == "Projectile")
+            {
+                PlayerManager.instance.playerBase.takeDamage(other.GetComponent<EnemyProjectileBehaviour>().damage, false);
+                spdDebuff(other.GetComponent<EnemyProjectileBehaviour>().amountSpdDebuff, other.GetComponent<EnemyProjectileBehaviour>().amountJumpDebuff, other.GetComponent<EnemyProjectileBehaviour>().amountTime);
+                Destroy(other.gameObject);
+            }
+        }
+    }
+#endregion
 
+#region Flip
 ////////////////////////// FLIP //////////////////////////////////////////
     public void InstantFlip()
     {
@@ -444,6 +503,8 @@ public class PlayerMovement : MonoBehaviour
         PlayerManager.instance.rb.velocity = Vector2.zero;
         PlayerManager.instance.rb.AddForce(Recover, ForceMode2D.Impulse);
     }
+#endregion
+
 
     public bool show = true;
     private void OnDrawGizmosSelected()

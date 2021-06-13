@@ -144,7 +144,7 @@ public class PlayerBase : MonoBehaviour
 #region DAMAGE REGION
     public void takeDamage(int damage, bool mapDamage)
     {
-        if(iFrames <= 0 && !PlayerManager.instance.playerHabilities.GImpact)
+        if(iFrames <= 0 && !PlayerManager.instance.playerHabilities.GImpact && damage > 0)
         {
             CameraControl.instance.StartShake(0.2f, 0.7f, 3f);
             curLife -= damage;
