@@ -2,24 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFugitivoBehaviour : MonoBehaviour
+public class EnemySlimeRabbitBehaviour : MonoBehaviour
 {
     private bool stop;
 
+    private Animator anim;
     private Rigidbody2D rb;
     [SerializeField]
-    private float runAwaySpeed = 18f, radius = 0.3f, patrolSpeed = 2f;
+    private float runAwaySpeed = 18f, radius = 0.3f, patrolSpeed = 4f;
     private Transform player;
     [SerializeField]
     private LayerMask whatIsGround;
-    private bool groundedR, groundedL, justGo;
+    private bool groundedR, justGo;
     [SerializeField]
-    private Transform checkR,checkL;
+    private Transform checkR;
     private Vector2 go;
 
     private bool change, facingRight = true;
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -41,9 +43,10 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
             {
                 GetComponentInChildren<EnemyActionArea>().setTakeAction(false);
                 running = false;
-                tt = 0;
             }
         }
+        else{tt = 0;}
+
         if(!GetComponentInChildren<EnemyVision>().getIsHidding() || running)
         {
             if(!GetComponentInChildren<EnemyActionArea>().getTakeAction() && GetComponentInChildren<EnemyAttentionArea>().getGotAttention() && !running)
@@ -65,17 +68,17 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
                     }
                 }
                 //Animação do bicho com medo
-                rb.velocity = Vector2.zero;
+                rb.velocity = new Vector2(0, rb.velocity.y);
             }
             else if(GetComponentInChildren<EnemyActionArea>().getTakeAction())
             {
-                if(groundedR && transform.position.x > player.position.x
-                || groundedL && transform.position.x < player.position.x)
+                if(groundedR && transform.position.x >= player.position.x
+                || groundedR && transform.position.x <= player.position.x)
                 {
                     run();
                 }
-                else if(!groundedR && transform.position.x > player.position.x
-                    || !groundedL && transform.position.x < player.position.x)
+                else if(!groundedR && transform.position.x >= player.position.x
+                    || !groundedR && transform.position.x <= player.position.x)
                 {
                     stopMoving();
                     suicideJump();
@@ -94,38 +97,65 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
     private void FixedUpdate()
     {
         groundedR = Physics2D.OverlapCircle(checkR.position, radius, whatIsGround);
-        groundedL = Physics2D.OverlapCircle(checkL.position, radius, whatIsGround);
     }
 
-    private float curCanTurn = 1f, canTurn = 1f, turn = 1f, curTurn = 1f;
+    private float curCanTurn = 1f, canTurn = 1f, turn = 1f, curTurn = 1f, curSpd;
+    private float waitToJump = 0;
     private void patrol()
     {
         curCanTurn -= Time.deltaTime;
-        if(groundedR && groundedL && curCanTurn > 0)
+        if(groundedR && curCanTurn > 0)
         {
             curTurn = turn;
-            rb.velocity = new Vector2(patrolSpeed, rb.velocity.y);
+            curSpd = patrolSpeed;
+            if(!onGround)
+            {
+                rb.velocity = new Vector2(patrolSpeed, rb.velocity.y);
+                waitToJump = 0;
+            }
+            else
+            {
+                anim.SetTrigger("jumping");
+                anim.SetBool("onGround", false);
+                waitToJump += Time.deltaTime;
+                if(waitToJump > 0.24f)
+                    rb.velocity = new Vector2(patrolSpeed, 30f);
+            }
         }
-        else if(groundedR && !groundedL 
-            || groundedR && !groundedL 
+        else if(!groundedR
             || curCanTurn < 0)
         {
             if(curTurn > 0)
             {
-                canTurn = Random.Range(5f,10f);
+                if(facingRight)
+                {
+                    curSpd -= 0.25f;
+                    if(curSpd < 0) curSpd = 0;
+                }
+                else
+                {
+                    curSpd += 0.25f;
+                    if(curSpd > 0) curSpd = 0;
+                }
+                rb.velocity = new Vector2(curSpd, rb.velocity.y);
+                canTurn = Random.Range(2f,5f);
                 curTurn -= Time.deltaTime;
                 change = true;
             }
             else
             {
                 curCanTurn = canTurn;
-                turn = Random.Range(2f, 4f);
+                turn = Random.Range(5f, 10f);
                 flip();
-                rb.velocity = new Vector2(patrolSpeed, rb.velocity.y);
+                anim.SetTrigger("jumping");
+                anim.SetBool("onGround", false);
+                if(waitToJump > 0.12f)
+                    rb.velocity = new Vector2(patrolSpeed, 30f);
             }
         }
     }
 
+    private float runWaitToJump;
     private void run()
     {
         stop = true;
@@ -153,7 +183,21 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
         {
             runAwaySpeed = -Mathf.Abs(runAwaySpeed);
         }
-        rb.velocity = new Vector2(runAwaySpeed, rb.velocity.y);
+        if(onGround)
+        {
+            runWaitToJump += Time.deltaTime;
+            anim.SetTrigger("jumping");
+            anim.SetBool("onGround", false);
+            if(runWaitToJump > 0.24f)
+            {
+                rb.velocity = new Vector2(runAwaySpeed, 30f);
+            }
+        }
+        else
+        {
+            runWaitToJump = 0;
+            rb.velocity = new Vector2(runAwaySpeed, rb.velocity.y);
+        }
     }
 
     float t;
@@ -161,16 +205,16 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
     private void suicideJump()
     {
         t += Time.deltaTime;
-        if(t > 0.8f) justGo = true;
-        if(justGo && t < 1f && t > 0.8f && onGround)
+        if(t > 0.6f) justGo = true;
+        if(justGo && t < 0.8f && t > 0.6f && onGround)
         {
             if((this.transform.position.x - player.position.x) < 0)
             {
-                go = new Vector2(-8f, 22f);
+                go = new Vector2(-10f, 25f);
             }
             else if((this.transform.position.x - player.position.x) >= 0)
             {
-                go = new Vector2(8f, 22f);
+                go = new Vector2(10f, 25f);
             }
             if(GetComponentInChildren<EnemyActionArea>().getTakeAction())
             {
@@ -198,6 +242,8 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
     {
         if(other.gameObject.layer == 8 || other.gameObject.layer == 13)
         {
+            anim.SetTrigger("landing");
+            anim.SetBool("onGround", true);
             if(dieOnCollision)
             {
                 Destroy(gameObject);
@@ -213,6 +259,7 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
         if(other.gameObject.layer == 8 || other.gameObject.layer == 13)
         {
             onGround = true;
+            anim.SetBool("onGround", true);
         }
     }
 
@@ -242,17 +289,16 @@ public class EnemyFugitivoBehaviour : MonoBehaviour
         if(stop)
         {
             stop = false;
-            rb.velocity = Vector2.zero;
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 
     public bool show;
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         if(show)
         {
             Gizmos.DrawWireSphere(checkR.position, radius);
-            Gizmos.DrawWireSphere(checkL.position, radius);
         }
     }
 }

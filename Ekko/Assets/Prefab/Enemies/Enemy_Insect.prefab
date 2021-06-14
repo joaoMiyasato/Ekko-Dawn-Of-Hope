@@ -178,7 +178,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 110, y: 110}
+  m_Size: {x: 60, y: 60}
   m_EdgeRadius: 0
 --- !u!114 &8971780505060945931
 MonoBehaviour:
@@ -261,8 +261,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityIntensity: 80
   isOnRightWall: 0
-  isOnLeftWall: 0
-  isOnGround: 1
+  isOnLeftWall: 1
+  isOnGround: 0
   isOnCeiling: 0
   radius: 0.3
   patrolSpeed: 2
@@ -512,7 +512,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 120, y: 120}
+  m_Size: {x: 70, y: 70}
   m_EdgeRadius: 0
 --- !u!114 &3194336145252874487
 MonoBehaviour:

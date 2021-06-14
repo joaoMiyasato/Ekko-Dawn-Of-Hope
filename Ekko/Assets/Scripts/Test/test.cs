@@ -45,6 +45,8 @@ public class test : MonoBehaviour
         rb.velocity = new Vector2(MoveInput * curSpeed, rb.velocity.y);
     }
     
+    public Transform lugar;
+    public GameObject henge;
     private void jump()
     {
         if(jumpCount > 0 && Input.GetKeyDown(KeyCode.Space))
@@ -53,6 +55,7 @@ public class test : MonoBehaviour
             isJumping = true;
             jumpTimeCounter = jumpTime;
             rb.velocity = Vector2.up ;
+            henge.transform.position = lugar.position;
         }
 
         if(isJumping && Input.GetKey(KeyCode.Space))

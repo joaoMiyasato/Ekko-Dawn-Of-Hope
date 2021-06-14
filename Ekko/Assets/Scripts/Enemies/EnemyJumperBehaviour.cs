@@ -209,7 +209,7 @@ public class EnemyJumperBehaviour : MonoBehaviour
     }
 
     public bool show;
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         if(show)
         {
