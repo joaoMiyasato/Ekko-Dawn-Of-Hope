@@ -51,6 +51,11 @@ public class UI_TabControl : MonoBehaviour
             RBD = UI_manager.instance.GlossaryFirstButton.GetComponent<Button>();
             LBD = UI_manager.instance.GlossaryFirstButton.GetComponent<Button>();
         }
+        else if(UI_manager.instance.curMenu == 4)
+        {
+            RBD = UI_manager.instance.WeaponFirstButton.GetComponent<Button>();
+            LBD = UI_manager.instance.WeaponFirstButton.GetComponent<Button>();
+        }
 
         L.selectOnRight = LBR;
         L.selectOnDown = LBD;

@@ -7,7 +7,8 @@ public enum ItemType
     Memory,
     Syntesis,
     Jewel, 
-    Enemy
+    Enemy,
+    Weapon
 }
 public abstract class ItemObject : ScriptableObject
 {

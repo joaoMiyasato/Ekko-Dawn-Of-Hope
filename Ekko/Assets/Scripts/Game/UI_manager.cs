@@ -17,6 +17,7 @@ public class UI_manager : MonoBehaviour
     public GameObject Menu1;
     public GameObject Menu2;
     public GameObject Menu3;
+    public GameObject Menu4;
     public GameObject Tab;
 
     public GameObject pauseMenu;
@@ -34,7 +35,7 @@ public class UI_manager : MonoBehaviour
     public int stonesMenu;
     public GameObject curStoneMenu;
     
-    public GameObject InventoryFirstButton, RockFirstButton, MapFirstButton, GlossaryFirstButton, PauseFirstButton;
+    public GameObject InventoryFirstButton, RockFirstButton, MapFirstButton, GlossaryFirstButton, PauseFirstButton, WeaponFirstButton;
 
     public ItemObject previousItem;
 
@@ -47,6 +48,8 @@ public class UI_manager : MonoBehaviour
     public GameObject[] enemiesSlots;
     public GameObject[] memoriesSlots;
     public GameObject[] syntesisSlots;
+
+    public GameObject selectedWeaponSlot;
 
     private void Awake()
     {
@@ -121,13 +124,13 @@ public class UI_manager : MonoBehaviour
 
     public void InterfaceUpdate()
     {
-        if(curMenu > 3)
+        if(curMenu > 4)
         {
             curMenu = 0;
         }
         else if(curMenu < 0)
         {
-            curMenu = 3;
+            curMenu = 4;
         }
 
         if(curMenu == 0)
@@ -166,6 +169,12 @@ public class UI_manager : MonoBehaviour
             curMenuShow = Menu3;
             curMenuShow.SetActive(true);
             Tab.GetComponent<Text>().text = "Glossário";
+        }
+        else if(curMenu == 4)
+        {
+            curMenuShow = Menu4;
+            curMenuShow.SetActive(true);
+            Tab.GetComponent<Text>().text = "Weapons";
         }
     }
 
@@ -467,6 +476,12 @@ public class UI_manager : MonoBehaviour
                 syntesisSlots[i].transform.GetChild(1).GetComponent<Text>().text = null;
             }
         }
+    }
+
+    private void DisplayWeapons()
+    {
+        //a criar
+
     }
 
     private void ResetButtonItems()

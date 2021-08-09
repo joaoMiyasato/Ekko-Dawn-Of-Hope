@@ -33,6 +33,8 @@ public class PlayerManager : MonoBehaviour
 
     private int gravityChange = 1;
 
+    private ItemObject offEquipedWeapon, offSuppEquipedWeapon, suppEquipedWeapon;
+
     private void Awake()
     {
         if(instance == null)
@@ -160,6 +162,18 @@ public class PlayerManager : MonoBehaviour
     {
         return this.skill_DoubleJump;
     }
+    public ItemObject getOffEquipedWeapon()
+    {
+        return offEquipedWeapon;
+    }
+    public ItemObject getOffSuppEquipedWeapon()
+    {
+        return offSuppEquipedWeapon;
+    }
+    public ItemObject getSuppEquipedWeapon()
+    {
+        return suppEquipedWeapon;
+    }
 
 #endregion
 
@@ -187,6 +201,18 @@ public class PlayerManager : MonoBehaviour
     public void setSkill_Impact(bool skill_Impact)
     {
         this.skill_Impact = skill_Impact;
+    }
+    public void setOffEquipedWeapon(ItemObject weapon)
+    {
+        this.offEquipedWeapon = weapon;
+    }
+    public void setOffSuppEquipedWeapon(ItemObject weapon)
+    {
+        this.offSuppEquipedWeapon = weapon;
+    }
+    public void setSuppEquipedWeapon(ItemObject weapon)
+    {
+        this.suppEquipedWeapon = weapon;
     }
 
 #endregion
