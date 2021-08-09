@@ -129,19 +129,18 @@ public class EnemySlimeRabbitBehaviour : MonoBehaviour
             {
                 if(facingRight)
                 {
-                    curSpd -= 0.15f;
+                    curSpd -= 0.25f;
                     if(curSpd < 0) curSpd = 0;
                 }
                 else
                 {
-                    curSpd += 0.15f;
+                    curSpd += 0.25f;
                     if(curSpd > 0) curSpd = 0;
                 }
                 rb.velocity = new Vector2(curSpd, rb.velocity.y);
                 canTurn = Random.Range(2f,5f);
                 curTurn -= Time.deltaTime;
                 change = true;
-                anim.SetTrigger("idle");
             }
             else
             {
@@ -219,22 +218,20 @@ public class EnemySlimeRabbitBehaviour : MonoBehaviour
             }
             if(GetComponentInChildren<EnemyActionArea>().getTakeAction())
             {
-                anim.SetTrigger("jumping");
-                anim.SetBool("onGround", false);
                 rb.velocity = go;
                 running = true;
             }
         }
     }
 
-    private float dyingHeight = 0.50f, curAirTime;
+    private float dyingHeight = 0.5f, curAirTime;
     private bool dieOnCollision = false;
     private void dieFromFalling()
     {
         if(rb.velocity.y < 0)
-        {
+        {   
             curAirTime += Time.deltaTime;
-            if(curAirTime >= dyingHeight && !onGround)
+            if(curAirTime >= dyingHeight)
             {
                 dieOnCollision = true;
             }
