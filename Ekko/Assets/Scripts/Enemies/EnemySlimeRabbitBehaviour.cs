@@ -129,12 +129,12 @@ public class EnemySlimeRabbitBehaviour : MonoBehaviour
             {
                 if(facingRight)
                 {
-                    curSpd -= 0.25f;
+                    curSpd -= 0.15f;
                     if(curSpd < 0) curSpd = 0;
                 }
                 else
                 {
-                    curSpd += 0.25f;
+                    curSpd += 0.15f;
                     if(curSpd > 0) curSpd = 0;
                 }
                 rb.velocity = new Vector2(curSpd, rb.velocity.y);
@@ -218,6 +218,8 @@ public class EnemySlimeRabbitBehaviour : MonoBehaviour
             }
             if(GetComponentInChildren<EnemyActionArea>().getTakeAction())
             {
+                anim.SetTrigger("jumping");
+                anim.SetBool("onGround", false);
                 rb.velocity = go;
                 running = true;
             }
