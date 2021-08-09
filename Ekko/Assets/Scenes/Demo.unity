@@ -54011,6 +54011,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_SlimeRabbit
       objectReference: {fileID: 0}
+    - target: {fileID: 5413686393141049736, guid: a30f1525fad50854294244a2c984fecd,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2510886119659405516, guid: c34d2c442c744be46abad71bc687dafe,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a30f1525fad50854294244a2c984fecd, type: 3}
 --- !u!1 &1225558301
