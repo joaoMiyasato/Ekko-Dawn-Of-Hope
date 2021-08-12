@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
 #region Fall
         if(PlayerManager.instance.rb.velocity.y < 0)
         {
-            if(!PlayerManager.instance.playerAttack.attacking)
+            if(!PlayerManager.instance.playerOffensiveAttack.attacking)
             {
                 PlayerManager.instance.animator.SetBool("Falling", true);
             }
@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
             if(!facingRight && MoveInput > 0 && !PlayerManager.instance.playerHabilities.sliding 
             || facingRight && MoveInput > 0 && PlayerManager.instance.playerHabilities.sliding)
             {
-                if(!PlayerManager.instance.playerAttack.attacking)
+                if(!PlayerManager.instance.playerOffensiveAttack.attacking)
                 {
                     //Direita
                     if(isGrounded)
@@ -143,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
             else if(facingRight && MoveInput < 0 && !PlayerManager.instance.playerHabilities.sliding 
                 || !facingRight && MoveInput < 0 && PlayerManager.instance.playerHabilities.sliding)
             {
-                if(!PlayerManager.instance.playerAttack.attacking)
+                if(!PlayerManager.instance.playerOffensiveAttack.attacking)
                 {
                     //Esquerda
                     if(isGrounded)

@@ -16,3 +16,14 @@ MonoBehaviour:
   sprite: {fileID: 5601323976189978565, guid: fb854da4a74da8b49a8717f7125de017, type: 3}
   type: 4
   description: 
+  weaponDamage: 10
+  weaponAttackRate: 0.25
+  weaponHorizontalPosition: {x: 2.44, y: -0.09}
+  weaponUpPosition: {x: 0, y: 0}
+  weaponDownPosition: {x: 0, y: 0}
+  weaponRangeHorizontal0: 6.8
+  weaponRangeHorizontal1: 7.06
+  weaponRangeUp0: 0
+  weaponRangeUp1: 0
+  weaponRangeDown0: 0
+  weaponRangeDown1: 0

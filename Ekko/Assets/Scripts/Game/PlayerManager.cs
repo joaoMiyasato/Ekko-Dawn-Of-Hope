@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
 
     public PlayerBase playerBase;
     public PlayerMovement playerMovement;
-    public PlayerAttack playerAttack;
+    public PlayerOffensiveAttack playerOffensiveAttack;
     public PlayerHabilities playerHabilities;
     public Animator animator;
 
@@ -33,7 +33,7 @@ public class PlayerManager : MonoBehaviour
 
     private int gravityChange = 1;
 
-    private ItemObject offEquipedWeapon, offSuppEquipedWeapon, suppEquipedWeapon;
+    private WeaponObject offEquipedWeapon, offSuppEquipedWeapon, suppEquipedWeapon;
 
     private void Awake()
     {
@@ -56,7 +56,7 @@ public class PlayerManager : MonoBehaviour
         gravity = rb.gravityScale;
         playerMovement = this.GetComponent<PlayerMovement>();
         playerBase = this.GetComponent<PlayerBase>();
-        playerAttack = this.GetComponent<PlayerAttack>();
+        playerOffensiveAttack = this.GetComponent<PlayerOffensiveAttack>();
         playerHabilities = this.GetComponent<PlayerHabilities>();
         rb = this.GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
@@ -162,15 +162,15 @@ public class PlayerManager : MonoBehaviour
     {
         return this.skill_DoubleJump;
     }
-    public ItemObject getOffEquipedWeapon()
+    public WeaponObject getOffEquipedWeapon()
     {
         return offEquipedWeapon;
     }
-    public ItemObject getOffSuppEquipedWeapon()
+    public WeaponObject getOffSuppEquipedWeapon()
     {
         return offSuppEquipedWeapon;
     }
-    public ItemObject getSuppEquipedWeapon()
+    public WeaponObject getSuppEquipedWeapon()
     {
         return suppEquipedWeapon;
     }
@@ -202,15 +202,15 @@ public class PlayerManager : MonoBehaviour
     {
         this.skill_Impact = skill_Impact;
     }
-    public void setOffEquipedWeapon(ItemObject weapon)
+    public void setOffEquipedWeapon(WeaponObject weapon)
     {
         this.offEquipedWeapon = weapon;
     }
-    public void setOffSuppEquipedWeapon(ItemObject weapon)
+    public void setOffSuppEquipedWeapon(WeaponObject weapon)
     {
         this.offSuppEquipedWeapon = weapon;
     }
-    public void setSuppEquipedWeapon(ItemObject weapon)
+    public void setSuppEquipedWeapon(WeaponObject weapon)
     {
         this.suppEquipedWeapon = weapon;
     }

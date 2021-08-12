@@ -97,7 +97,7 @@ public class PlayerHabilities : MonoBehaviour
             impactTrigger = false;
             StartCoroutine(PlayerManager.instance.playerBase.refreshTime(0.75f));
             
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(impactPosition.position, impactRange, PlayerManager.instance.playerAttack.enemyLayers);
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(impactPosition.position, impactRange, PlayerManager.instance.playerOffensiveAttack.enemyLayers);
             foreach(Collider2D hit in hitEnemies)
             {
                 if(hit.gameObject.tag == "Ememy")

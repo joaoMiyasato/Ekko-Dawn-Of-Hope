@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class WeaponButton : MonoBehaviour
 {
-    public ItemObject thisWeapon;
+    public WeaponObject thisWeapon;
     void Start()
     {
         this.gameObject.GetComponent<Image>().sprite = thisWeapon.sprite;
