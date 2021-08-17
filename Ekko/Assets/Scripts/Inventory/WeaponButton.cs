@@ -14,7 +14,7 @@ public class WeaponButton : MonoBehaviour
 
     public void selectWeapon()
     {
-        if(UI_manager.instance.selectedWeaponSlot.GetComponent<EquipedWeaponButton>().off && !UI_manager.instance.selectedWeaponSlot.GetComponent<EquipedWeaponButton>().supp)
+        if(UI_manager.instance.selectedWeaponSlot.GetComponent<EquipedWeaponButton>().off && !UI_manager.instance.selectedWeaponSlot.GetComponent<EquipedWeaponButton>().supp && thisWeapon.weaponOffensive)
         {
             PlayerManager.instance.setOffEquipedWeapon(thisWeapon);
         }
@@ -22,7 +22,7 @@ public class WeaponButton : MonoBehaviour
         {
             PlayerManager.instance.setOffSuppEquipedWeapon(thisWeapon);
         }
-        else if(!UI_manager.instance.selectedWeaponSlot.GetComponent<EquipedWeaponButton>().off && UI_manager.instance.selectedWeaponSlot.GetComponent<EquipedWeaponButton>().supp)
+        else if(!UI_manager.instance.selectedWeaponSlot.GetComponent<EquipedWeaponButton>().off && UI_manager.instance.selectedWeaponSlot.GetComponent<EquipedWeaponButton>().supp && thisWeapon.weaponSupport)
         {
             PlayerManager.instance.setSuppEquipedWeapon(thisWeapon);
         }

@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Weapon Object", menuName = "Items/Weapon")]
 public class WeaponObject : ItemObject
 {
+    public int weaponId;
+    public bool weaponOffensive;
+    public bool weaponSupport;
     public int weaponDamage;
     public float weaponAttackRate;
     public Vector2 weaponHorizontalPosition;
@@ -16,6 +19,7 @@ public class WeaponObject : ItemObject
     public float weaponRangeUp1;
     public float weaponRangeDown0;
     public float weaponRangeDown1;
+    public Vector2 weaponRecoil;
 
     public void Awake()
     {

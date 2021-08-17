@@ -16,14 +16,17 @@ MonoBehaviour:
   sprite: {fileID: 9147546874185701050, guid: fb854da4a74da8b49a8717f7125de017, type: 3}
   type: 4
   description: 
+  weaponOffensive: 1
+  weaponSupport: 0
   weaponDamage: 25
   weaponAttackRate: 0.5
-  weaponHorizontalPosition: {x: 0, y: 0}
-  weaponUpPosition: {x: 0, y: 0}
-  weaponDownPosition: {x: 0, y: 0}
-  weaponRangeHorizontal0: 0
-  weaponRangeHorizontal1: 0
-  weaponRangeUp0: 0
-  weaponRangeUp1: 0
-  weaponRangeDown0: 0
-  weaponRangeDown1: 0
+  weaponHorizontalPosition: {x: 3, y: -0.13}
+  weaponUpPosition: {x: 0, y: 1.91}
+  weaponDownPosition: {x: 0, y: -2.73}
+  weaponRangeHorizontal0: 5.13
+  weaponRangeHorizontal1: 5.71
+  weaponRangeUp0: 7.33
+  weaponRangeUp1: 3.63
+  weaponRangeDown0: 7.33
+  weaponRangeDown1: 3.82
+  weaponRecoil: {x: 8, y: 30}

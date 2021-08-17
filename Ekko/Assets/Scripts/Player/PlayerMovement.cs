@@ -77,13 +77,12 @@ public class PlayerMovement : MonoBehaviour
 #endregion
 
 #region Fall
-        if(PlayerManager.instance.rb.velocity.y < 0)
+        if(PlayerManager.instance.rb.velocity.y < -0.1)
         {
             if(!PlayerManager.instance.playerOffensiveAttack.attacking)
             {
                 PlayerManager.instance.animator.SetBool("Falling", true);
             }
-            else PlayerManager.instance.animator.SetBool("Falling", false);
         }
         else PlayerManager.instance.animator.SetBool("Falling", false);
 #endregion

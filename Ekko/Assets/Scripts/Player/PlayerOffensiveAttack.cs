@@ -6,9 +6,7 @@ public class PlayerOffensiveAttack : MonoBehaviour
 {
     public WeaponObject testObject;
     public LayerMask enemyLayers;
-    private float curInterval;
     private bool hitted;
-    public Vector2 recoilForce;
     private Vector2 recoil;
     private float horizontalRecoil,verticalRecoil;
     private float a,b = 0.01f;
@@ -17,6 +15,10 @@ public class PlayerOffensiveAttack : MonoBehaviour
     private bool animTrigger;
     private float animTime;
     public bool attacking;
+
+    private int whatWeaponSlot;
+
+    private float interval = 0.25f, curInterval;
 
     private void Start()
     {
@@ -27,7 +29,7 @@ public class PlayerOffensiveAttack : MonoBehaviour
 
 // ARRUMAR INTERVALO
 #region AttackInteval/AnimationControl
-        if(curInterval < 0.25 /*   AQUI  */)
+        if(curInterval < interval /*   AQUI  */)
         {
             attacking = true;
             PlayerManager.instance.animator.SetBool("IsAttacking", true);
@@ -48,12 +50,15 @@ public class PlayerOffensiveAttack : MonoBehaviour
 
 
         //ARRUMAR TODA ESSA PARTE MAIS TARDE PARA INSTANCIAR DANO NA ANIMAÇÃO
-        if(Input.GetKeyDown(KeyCode.X) && !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
+        if(Input.GetKeyDown(KeyCode.A) && !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
         {
             if(!PlayerManager.instance.playerBase.getCantAction())
             {
                 if(curInterval >= PlayerManager.instance.getOffEquipedWeapon().weaponAttackRate)
                 {
+                    whatWeaponSlot = 0;
+                    PlayerManager.instance.animator.SetInteger("Weapon",PlayerManager.instance.getOffEquipedWeapon().weaponId);
+                    interval = PlayerManager.instance.getOffEquipedWeapon().weaponAttackRate;
                     atkH = true;
                     AttackHor();
                     if(PlayerManager.instance.playerMovement.facingRight)
@@ -67,12 +72,15 @@ public class PlayerOffensiveAttack : MonoBehaviour
                 }
             }
         }
-        else if(Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.UpArrow))
+        else if(Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.UpArrow))
         {
             if(!PlayerManager.instance.playerBase.getCantAction())
             {
                 if(curInterval >= PlayerManager.instance.getOffEquipedWeapon().weaponAttackRate)
                 {
+                    whatWeaponSlot = 0;
+                    PlayerManager.instance.animator.SetInteger("Weapon",PlayerManager.instance.getOffEquipedWeapon().weaponId);
+                    interval = PlayerManager.instance.getOffEquipedWeapon().weaponAttackRate;
                     atkH = false;
                     AttackUp();
 
@@ -80,12 +88,15 @@ public class PlayerOffensiveAttack : MonoBehaviour
                 }
             }
         }
-        else if(Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.DownArrow) && !PlayerManager.instance.playerMovement.isGrounded)
+        else if(Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.DownArrow) && !PlayerManager.instance.playerMovement.isGrounded)
         {
             if(!PlayerManager.instance.playerBase.getCantAction())
             {
                 if(curInterval >= PlayerManager.instance.getOffEquipedWeapon().weaponAttackRate)
                 {
+                    whatWeaponSlot = 0;
+                    PlayerManager.instance.animator.SetInteger("Weapon",PlayerManager.instance.getOffEquipedWeapon().weaponId);
+                    interval = PlayerManager.instance.getOffEquipedWeapon().weaponAttackRate;
                     atkH = false;
                     AttackDown();
 
@@ -94,15 +105,87 @@ public class PlayerOffensiveAttack : MonoBehaviour
             }
         }
 
+        //ARRUMAR TODA ESSA PARTE MAIS TARDE PARA INSTANCIAR DANO NA ANIMAÇÃO
+        if(Input.GetKeyDown(KeyCode.S) && !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
+        {
+            if(!PlayerManager.instance.playerBase.getCantAction())
+            {
+                if(curInterval >= PlayerManager.instance.getOffSuppEquipedWeapon().weaponAttackRate)
+                {
+                    whatWeaponSlot = 1;
+                    PlayerManager.instance.animator.SetInteger("Weapon",PlayerManager.instance.getOffSuppEquipedWeapon().weaponId);
+                    interval = PlayerManager.instance.getOffSuppEquipedWeapon().weaponAttackRate;
+                    atkH = true;
+                    AttackHor();
+                    if(PlayerManager.instance.playerMovement.facingRight)
+                    {
+                        horizontalRecoil = -1;
+                    }
+                    else if(!PlayerManager.instance.playerMovement.facingRight)
+                    {
+                        horizontalRecoil = 1;
+                    }
+                }
+            }
+        }
+        else if(Input.GetKeyDown(KeyCode.S) && Input.GetKey(KeyCode.UpArrow))
+        {
+            if(!PlayerManager.instance.playerBase.getCantAction())
+            {
+                if(curInterval >= PlayerManager.instance.getOffSuppEquipedWeapon().weaponAttackRate)
+                {
+                    whatWeaponSlot = 1;
+                    PlayerManager.instance.animator.SetInteger("Weapon",PlayerManager.instance.getOffSuppEquipedWeapon().weaponId);
+                    interval = PlayerManager.instance.getOffSuppEquipedWeapon().weaponAttackRate;
+                    atkH = false;
+                    AttackUp();
+
+                    verticalRecoil = PlayerManager.instance.rb.velocity.y;
+                }
+            }
+        }
+        else if(Input.GetKeyDown(KeyCode.S) && Input.GetKey(KeyCode.DownArrow) && !PlayerManager.instance.playerMovement.isGrounded)
+        {
+            if(!PlayerManager.instance.playerBase.getCantAction())
+            {
+                if(curInterval >= PlayerManager.instance.getOffSuppEquipedWeapon().weaponAttackRate)
+                {
+                    whatWeaponSlot = 1;
+                    PlayerManager.instance.animator.SetInteger("Weapon",PlayerManager.instance.getOffSuppEquipedWeapon().weaponId);
+                    interval = PlayerManager.instance.getOffSuppEquipedWeapon().weaponAttackRate;
+                    atkH = false;
+                    AttackDown();
+
+                    verticalRecoil = 1;
+                }
+            }
+        }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         //RECOIL HORIZONTAL E VERTICAL
         if(atkH)
         {
             recoil.y = PlayerManager.instance.rb.velocity.y;
-            recoil.x = horizontalRecoil * recoilForce.x;
+            if(whatWeaponSlot == 0)
+            {
+                recoil.x = horizontalRecoil * PlayerManager.instance.getOffEquipedWeapon().weaponRecoil.x;
+            }
+            else if(whatWeaponSlot == 1)
+            {
+                recoil.x = horizontalRecoil * PlayerManager.instance.getOffSuppEquipedWeapon().weaponRecoil.x;
+            }
         }
         else
         {
-            recoil.y = horizontalRecoil * recoilForce.y;
+            if(whatWeaponSlot == 0)
+            {
+                recoil.y = horizontalRecoil * PlayerManager.instance.getOffEquipedWeapon().weaponRecoil.y;
+            }
+            else if(whatWeaponSlot == 1)
+            {
+                recoil.y = horizontalRecoil * PlayerManager.instance.getOffSuppEquipedWeapon().weaponRecoil.y;
+            }
             recoil.x = PlayerManager.instance.rb.velocity.x;
         }
 
@@ -111,7 +194,7 @@ public class PlayerOffensiveAttack : MonoBehaviour
             knockBack();
         }
 
-        //AJEITAR MAIS TARDE
+        //AJEITAR MAIS TARDE // COMBO
         if(animTrigger)
         {
             animTime += Time.deltaTime;
@@ -159,7 +242,14 @@ public class PlayerOffensiveAttack : MonoBehaviour
             if(hit.gameObject.tag == "Enemy" || hit.gameObject.tag == "Boss")
             {
                 PlayerManager.instance.playerBase.addEnergy(30);
-                hit.GetComponent<EnemyBase>().takeDamage(PlayerManager.instance.getOffEquipedWeapon().weaponDamage);
+                if(whatWeaponSlot == 0)
+                {
+                    hit.GetComponent<EnemyBase>().takeDamage(PlayerManager.instance.getOffEquipedWeapon().weaponDamage);
+                }
+                else if(whatWeaponSlot == 1)
+                {
+                    hit.GetComponent<EnemyBase>().takeDamage(PlayerManager.instance.getOffSuppEquipedWeapon().weaponDamage);
+                }
             }
             else if(hit.gameObject.layer == 13)
             {
@@ -184,7 +274,14 @@ public class PlayerOffensiveAttack : MonoBehaviour
             if(hit.gameObject.tag == "Enemy" || hit.gameObject.tag == "Boss")
             {
                 PlayerManager.instance.playerBase.addEnergy(30);
-                hit.GetComponent<EnemyBase>().takeDamage(PlayerManager.instance.getOffEquipedWeapon().weaponDamage);
+                if(whatWeaponSlot == 0)
+                {
+                    hit.GetComponent<EnemyBase>().takeDamage(PlayerManager.instance.getOffEquipedWeapon().weaponDamage);
+                }
+                else if(whatWeaponSlot == 1)
+                {
+                    hit.GetComponent<EnemyBase>().takeDamage(PlayerManager.instance.getOffSuppEquipedWeapon().weaponDamage);
+                }
             }
             else if(hit.gameObject.layer == 13)
             {
@@ -213,7 +310,14 @@ public class PlayerOffensiveAttack : MonoBehaviour
             if(hit.gameObject.tag == "Enemy" || hit.gameObject.tag == "Boss")
             {
                 PlayerManager.instance.playerBase.addEnergy(30);
-                hit.GetComponent<EnemyBase>().takeDamage(PlayerManager.instance.getOffEquipedWeapon().weaponDamage);
+                if(whatWeaponSlot == 0)
+                {
+                    hit.GetComponent<EnemyBase>().takeDamage(PlayerManager.instance.getOffEquipedWeapon().weaponDamage);
+                }
+                else if(whatWeaponSlot == 1)
+                {
+                    hit.GetComponent<EnemyBase>().takeDamage(PlayerManager.instance.getOffSuppEquipedWeapon().weaponDamage);
+                }
             }
             else if(hit.gameObject.layer == 13)
             {
