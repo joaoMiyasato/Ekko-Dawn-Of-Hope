@@ -16,6 +16,7 @@ MonoBehaviour:
   sprite: {fileID: -5082318553336741150, guid: fb854da4a74da8b49a8717f7125de017, type: 3}
   type: 4
   description: 
+  weaponId: 4
   weaponOffensive: 1
   weaponSupport: 1
   weaponDamage: 0

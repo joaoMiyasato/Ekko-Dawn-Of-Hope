@@ -27,13 +27,12 @@ public class PlayerOffensiveAttack : MonoBehaviour
     private void Update()
     {
 
-// ARRUMAR INTERVALO
 #region AttackInteval/AnimationControl
-        if(curInterval < interval /*   AQUI  */)
+        if(curInterval < interval)
         {
             attacking = true;
             PlayerManager.instance.animator.SetBool("IsAttacking", true);
-            PlayerManager.instance.animator.SetBool("Turning", false);
+            // PlayerManager.instance.animator.SetBool("Turning", false);
             if(!PlayerManager.instance.playerMovement.isGrounded)
             {
                 PlayerManager.instance.animator.ResetTrigger("Jump");
@@ -49,8 +48,7 @@ public class PlayerOffensiveAttack : MonoBehaviour
 #endregion
 
 
-        //ARRUMAR TODA ESSA PARTE MAIS TARDE PARA INSTANCIAR DANO NA ANIMAÇÃO
-        if(Input.GetKeyDown(KeyCode.A) && !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
+        if(Input.GetKeyDown(KeyCode.A) && !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && !attacking)
         {
             if(!PlayerManager.instance.playerBase.getCantAction())
             {
@@ -60,7 +58,20 @@ public class PlayerOffensiveAttack : MonoBehaviour
                     PlayerManager.instance.animator.SetInteger("Weapon",PlayerManager.instance.getOffEquipedWeapon().weaponId);
                     interval = PlayerManager.instance.getOffEquipedWeapon().weaponAttackRate;
                     atkH = true;
-                    AttackHor();
+
+                    if(!animTrigger)
+                    {
+                        animTrigger = true;
+                        PlayerManager.instance.animator.SetTrigger("AttackH0");
+                    }
+                    else
+                    {
+                        animTrigger = false;
+                        animTime = 0;
+                        PlayerManager.instance.animator.SetTrigger("AttackH1");
+                    }
+                    curInterval = 0;
+
                     if(PlayerManager.instance.playerMovement.facingRight)
                     {
                         horizontalRecoil = -1;
@@ -72,7 +83,7 @@ public class PlayerOffensiveAttack : MonoBehaviour
                 }
             }
         }
-        else if(Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.UpArrow))
+        else if(Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.UpArrow) && !attacking)
         {
             if(!PlayerManager.instance.playerBase.getCantAction())
             {
@@ -82,13 +93,15 @@ public class PlayerOffensiveAttack : MonoBehaviour
                     PlayerManager.instance.animator.SetInteger("Weapon",PlayerManager.instance.getOffEquipedWeapon().weaponId);
                     interval = PlayerManager.instance.getOffEquipedWeapon().weaponAttackRate;
                     atkH = false;
-                    AttackUp();
+
+                    PlayerManager.instance.animator.SetTrigger("AttackVU");
+                    curInterval = 0;
 
                     verticalRecoil = PlayerManager.instance.rb.velocity.y;
                 }
             }
         }
-        else if(Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.DownArrow) && !PlayerManager.instance.playerMovement.isGrounded)
+        else if(Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.DownArrow) && !PlayerManager.instance.playerMovement.isGrounded && !attacking)
         {
             if(!PlayerManager.instance.playerBase.getCantAction())
             {
@@ -98,15 +111,16 @@ public class PlayerOffensiveAttack : MonoBehaviour
                     PlayerManager.instance.animator.SetInteger("Weapon",PlayerManager.instance.getOffEquipedWeapon().weaponId);
                     interval = PlayerManager.instance.getOffEquipedWeapon().weaponAttackRate;
                     atkH = false;
-                    AttackDown();
+                    
+                    PlayerManager.instance.animator.SetTrigger("AttackVD");
+                    curInterval = 0;
 
                     verticalRecoil = 1;
                 }
             }
         }
 
-        //ARRUMAR TODA ESSA PARTE MAIS TARDE PARA INSTANCIAR DANO NA ANIMAÇÃO
-        if(Input.GetKeyDown(KeyCode.S) && !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
+        if(Input.GetKeyDown(KeyCode.S) && !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && !attacking)
         {
             if(!PlayerManager.instance.playerBase.getCantAction())
             {
@@ -116,7 +130,20 @@ public class PlayerOffensiveAttack : MonoBehaviour
                     PlayerManager.instance.animator.SetInteger("Weapon",PlayerManager.instance.getOffSuppEquipedWeapon().weaponId);
                     interval = PlayerManager.instance.getOffSuppEquipedWeapon().weaponAttackRate;
                     atkH = true;
-                    AttackHor();
+                    
+                    if(!animTrigger)
+                    {
+                        animTrigger = true;
+                        PlayerManager.instance.animator.SetTrigger("AttackH0");
+                    }
+                    else
+                    {
+                        animTrigger = false;
+                        animTime = 0;
+                        PlayerManager.instance.animator.SetTrigger("AttackH1");
+                    }
+                    curInterval = 0;
+
                     if(PlayerManager.instance.playerMovement.facingRight)
                     {
                         horizontalRecoil = -1;
@@ -128,7 +155,7 @@ public class PlayerOffensiveAttack : MonoBehaviour
                 }
             }
         }
-        else if(Input.GetKeyDown(KeyCode.S) && Input.GetKey(KeyCode.UpArrow))
+        else if(Input.GetKeyDown(KeyCode.S) && Input.GetKey(KeyCode.UpArrow) && !attacking)
         {
             if(!PlayerManager.instance.playerBase.getCantAction())
             {
@@ -138,13 +165,15 @@ public class PlayerOffensiveAttack : MonoBehaviour
                     PlayerManager.instance.animator.SetInteger("Weapon",PlayerManager.instance.getOffSuppEquipedWeapon().weaponId);
                     interval = PlayerManager.instance.getOffSuppEquipedWeapon().weaponAttackRate;
                     atkH = false;
-                    AttackUp();
+
+                    PlayerManager.instance.animator.SetTrigger("AttackVU");
+                    curInterval = 0;
 
                     verticalRecoil = PlayerManager.instance.rb.velocity.y;
                 }
             }
         }
-        else if(Input.GetKeyDown(KeyCode.S) && Input.GetKey(KeyCode.DownArrow) && !PlayerManager.instance.playerMovement.isGrounded)
+        else if(Input.GetKeyDown(KeyCode.S) && Input.GetKey(KeyCode.DownArrow) && !PlayerManager.instance.playerMovement.isGrounded && !attacking)
         {
             if(!PlayerManager.instance.playerBase.getCantAction())
             {
@@ -154,7 +183,9 @@ public class PlayerOffensiveAttack : MonoBehaviour
                     PlayerManager.instance.animator.SetInteger("Weapon",PlayerManager.instance.getOffSuppEquipedWeapon().weaponId);
                     interval = PlayerManager.instance.getOffSuppEquipedWeapon().weaponAttackRate;
                     atkH = false;
-                    AttackDown();
+                    
+                    PlayerManager.instance.animator.SetTrigger("AttackVD");
+                    curInterval = 0;
 
                     verticalRecoil = 1;
                 }
@@ -163,7 +194,6 @@ public class PlayerOffensiveAttack : MonoBehaviour
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //RECOIL HORIZONTAL E VERTICAL
         if(atkH)
         {
             recoil.y = PlayerManager.instance.rb.velocity.y;
@@ -207,20 +237,6 @@ public class PlayerOffensiveAttack : MonoBehaviour
     }
     void AttackHor()
     {
-        if(!animTrigger)
-        {
-            animTrigger = true;
-            PlayerManager.instance.animator.SetTrigger("AttackH0");
-        }
-        else
-        {
-            animTrigger = false;
-            animTime = 0;
-            PlayerManager.instance.animator.SetTrigger("AttackH1");
-        }
-        curInterval = 0;
-
-
         Vector2 pos = PlayerManager.instance.getOffEquipedWeapon().weaponHorizontalPosition;
         if(PlayerManager.instance.playerMovement.facingRight)
         {
@@ -260,10 +276,6 @@ public class PlayerOffensiveAttack : MonoBehaviour
 
     void AttackUp()
     {
-        PlayerManager.instance.animator.SetTrigger("AttackVU");
-        curInterval = 0;
-
-
         Collider2D[] hittedEnemies = Physics2D.OverlapBoxAll(new Vector2(gameObject.transform.position.x+PlayerManager.instance.getOffEquipedWeapon().weaponUpPosition.x, gameObject.transform.position.y+PlayerManager.instance.getOffEquipedWeapon().weaponUpPosition.y), 
                                                                 new Vector2(PlayerManager.instance.getOffEquipedWeapon().weaponRangeUp0, PlayerManager.instance.getOffEquipedWeapon().weaponRangeUp1), 
                                                                 0,
@@ -292,10 +304,6 @@ public class PlayerOffensiveAttack : MonoBehaviour
 
     void AttackDown()
     {
-        PlayerManager.instance.animator.SetTrigger("AttackVD");
-        curInterval = 0;
-
-        
         Collider2D[] hittedEnemies = Physics2D.OverlapBoxAll(new Vector2(gameObject.transform.position.x+PlayerManager.instance.getOffEquipedWeapon().weaponDownPosition.x, gameObject.transform.position.y+PlayerManager.instance.getOffEquipedWeapon().weaponDownPosition.y), 
                                                                 new Vector2(PlayerManager.instance.getOffEquipedWeapon().weaponRangeDown0, PlayerManager.instance.getOffEquipedWeapon().weaponRangeDown1), 
                                                                 0,
