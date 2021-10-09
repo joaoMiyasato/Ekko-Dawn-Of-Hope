@@ -6,6 +6,7 @@ public class PlayerOffensiveAttack : MonoBehaviour
 {
     public WeaponObject testObject;
     public LayerMask enemyLayers;
+    public GameObject arrowObject;
     private bool hitted;
     private Vector2 recoil;
     private float horizontalRecoil,verticalRecoil;
@@ -46,7 +47,6 @@ public class PlayerOffensiveAttack : MonoBehaviour
 
         if(curInterval < 3f) curInterval += Time.deltaTime;
 #endregion
-
 
         if(Input.GetKeyDown(KeyCode.A) && !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && !attacking)
         {
@@ -119,7 +119,6 @@ public class PlayerOffensiveAttack : MonoBehaviour
                 }
             }
         }
-
         if(Input.GetKeyDown(KeyCode.S) && !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && !attacking)
         {
             if(!PlayerManager.instance.playerBase.getCantAction())
@@ -332,6 +331,54 @@ public class PlayerOffensiveAttack : MonoBehaviour
                 hit.GetComponent<DestroyObject>().Interact();
             }
         }
+    }
+
+    public void BowAttack()
+    {
+        
+#region Type 1
+        int dir = PlayerManager.instance.playerMovement.inputDirection;
+
+        if(dir == 0)
+        {
+            Vector2 pos = new Vector2(transform.position.x + 0.02f, transform.position.y + 0.1f);
+        }
+        else if(dir == 1)
+        {
+            Vector2 pos = new Vector2(transform.position.x - 0.02f, transform.position.y + 0.1f);
+        }
+        else if(dir == 2)
+        {
+            Vector2 pos = new Vector2(transform.position.x, transform.position.y + 0.4f);
+        }
+        else if(dir == 3)
+        {
+            Vector2 pos = new Vector2(transform.position.x, transform.position.y - 0.3f);
+        }
+        else if(dir == 4)
+        {
+            Vector2 pos = new Vector2(transform.position.x + 0.02f, transform.position.y + 0.4f);
+        }
+        else if(dir == 5)
+        {
+            Vector2 pos = new Vector2(transform.position.x - 0.02f, transform.position.y + 0.4f);
+        }
+        else if(dir == 6)
+        {
+            Vector2 pos = new Vector2(transform.position.x + 0.02f, transform.position.y - 0.3f);
+        }
+        else if(dir == 7)
+        {
+            Vector2 pos = new Vector2(transform.position.x - 0.02f, transform.position.y - 0.3f);
+        }
+        
+        GameObject stringShot = Instantiate(arrowObject, transform.position, arrowObject.transform.rotation);
+#endregion
+
+#region  Type 2
+
+#endregion
+
     }
 
     private void knockBack()

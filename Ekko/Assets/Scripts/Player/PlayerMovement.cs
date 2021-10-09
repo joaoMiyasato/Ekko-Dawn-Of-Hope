@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 ////////////////////////// MOVIMENTAÇÃO //////////////////////////////////////////
+    public int inputDirection;
     public readonly float speedNoAlteration = 18f;
     public float curSpeed, maxDropdownSpd =-35;
     private float inDropdownMaxSpd;
@@ -254,6 +255,50 @@ public class PlayerMovement : MonoBehaviour
         {
             moving = false;
             PlayerManager.instance.animator.SetBool("Walking", false);
+        }
+
+        if(Input.GetAxisRaw("Horizontal") > 0 && Input.GetAxisRaw("Vertical") == 0)
+        {//Direita
+            inputDirection = 0;
+        }
+        else if(Input.GetAxisRaw("Horizontal") < 0 && Input.GetAxisRaw("Vertical") == 0)
+        {//Esquerda
+            inputDirection = 1;
+        }
+        else if(Input.GetAxisRaw("Vertical") > 0 && Input.GetAxisRaw("Horizontal") == 0)
+        {//Cima
+            inputDirection = 2;
+        }
+        else if(Input.GetAxisRaw("Vertical") < 0 && Input.GetAxisRaw("Horizontal") == 0)
+        {//Baixo
+            inputDirection = 3;
+        }
+        else if(Input.GetAxisRaw("Horizontal") > 0 && Input.GetAxisRaw("Vertical") > 0)
+        {//DireitaCima
+            inputDirection = 4;
+        }
+        else if(Input.GetAxisRaw("Horizontal") < 0 && Input.GetAxisRaw("Vertical") > 0)
+        {//EsquerdaCima
+            inputDirection = 5;
+        }
+        else if(Input.GetAxisRaw("Vertical") > 0 && Input.GetAxisRaw("Horizontal") < 0)
+        {//DireitaBaixo
+            inputDirection = 6;
+        }
+        else if(Input.GetAxisRaw("Vertical") < 0 && Input.GetAxisRaw("Horizontal") < 0)
+        {//EsquerdaBaixo
+            inputDirection = 7;
+        }
+        else if(Input.GetAxisRaw("Vertical") == 0 && Input.GetAxisRaw("Horizontal") == 0)
+        {
+            if(facingRight)
+            {
+                inputDirection = 0;
+            }
+            else
+            {
+                inputDirection = 1;
+            }
         }
     }
 #endregion
